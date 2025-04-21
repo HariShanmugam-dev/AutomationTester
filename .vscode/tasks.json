@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build EXE",
+            "type": "process",
+            "command": "cmd",
+            "args": [
+                "/c", 
+                ".venv\\Scripts\\python.exe -m PyInstaller --onefile --windowed --icon=icons/Icon_logo.ico --add-data modules;modules --add-data widgets;widgets --add-data icons;icons main.py"
+                
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}

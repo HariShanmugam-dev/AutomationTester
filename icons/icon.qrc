@@ -1,0 +1,30 @@
+<RCC>
+  <qresource prefix="Icons">
+    <file>home_logo.png</file>
+    <file>reccorder.png</file>
+    <file>reccorder_hover.png</file>
+    <file>cil-save.png</file>
+    <file>cil-media-play.png</file>
+    <file>record_start.png</file>
+    <file>record_stop.png</file>
+    <file>cil-media-stop.png</file>
+    <file>cil-folder.png</file>
+    <file>cil-plus.png</file>
+    <file>cil-folder-open.png</file>
+    <file>cil-reload.png</file>
+    <file>icon_restore.png</file>
+    <file>icon_close.png</file>
+    <file>icon_maximize.png</file>
+    <file>icon_minimize.png</file>
+    <file>icon_settings.png</file>
+    <file>cil-x.png</file>
+    <file>cil-file.png</file>
+    <file>cil-home.png</file>
+    <file>icon_edit.png</file>
+    <file>Icon_logo.png</file>
+    <file>icon_record.png</file>
+    <file>icon_reports.png</file>
+    <file>icon_testtube.png</file>
+    <file>icon_menu.png</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug EXE (CMD)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/dist/autotest.exe",
+            "cwd": "${workspaceFolder}/dist",
+            "console": "integratedTerminal",
+            "stopAtEntry": false,
+            "preLaunchTask": "Build EXE"
+        },
+        {
+            "name": "Run Python (CMD)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+        }
+    ]
+}
