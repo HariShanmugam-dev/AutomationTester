@@ -6,23 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>400</height>
+    <width>258</width>
+    <height>322</height>
    </rect>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>300</width>
-    <height>400</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>Recorder</string>
   </property>
   <property name="styleSheet">
    <string notr="true">color: #bfe3fe; /* blue-charcoal 200 - light text on dark */
-background-color: #030A13; /* blue-charcoal 950 */
-</string>
+background-color: #030A13; /* blue-charcoal 950 */</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
@@ -30,7 +23,7 @@ background-color: #030A13; /* blue-charcoal 950 */
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>50</height>
+       <height>30</height>
       </size>
      </property>
      <property name="styleSheet">
@@ -41,23 +34,21 @@ QToolButton:hover {
 }</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QToolButton" name="settings">
-        <property name="toolTip">
-         <string>Settings</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="../icons/icon.qrc">
-          <normaloff>:/Icons/icon_settings.png</normaloff>:/Icons/icon_settings.png</iconset>
-        </property>
-        <property name="popupMode">
-         <enum>QToolButton::ToolButtonPopupMode::InstantPopup</enum>
-        </property>
-       </widget>
-      </item>
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
       <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
@@ -104,7 +95,7 @@ QPushButton:pressed {
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <property name="spacing">
-          <number>5</number>
+          <number>0</number>
          </property>
          <property name="leftMargin">
           <number>0</number>
@@ -144,6 +135,50 @@ QPushButton:pressed {
            <property name="icon">
             <iconset resource="../icons/icon.qrc">
              <normaloff>:/Icons/icon_minimize.png</normaloff>:/Icons/icon_minimize.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="maximizeRestoreAppBtn">
+           <property name="minimumSize">
+            <size>
+             <width>28</width>
+             <height>28</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>28</width>
+             <height>28</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Segoe UI</family>
+             <pointsize>10</pointsize>
+             <italic>false</italic>
+             <bold>false</bold>
+             <stylestrategy>PreferDefault</stylestrategy>
+            </font>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="toolTip">
+            <string>Restore</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../icons/icon.qrc">
+             <normaloff>:/Icons/icon_maximize.png</normaloff>:/Icons/icon_maximize.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -200,16 +235,51 @@ QPushButton:pressed {
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: none;
+      <string notr="true">/*border: none;*/
 
 
 </string>
      </property>
      <layout class="QVBoxLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
       <item>
        <widget class="QWidget" name="widget" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton {
+         <string notr="true"/>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <layout class="QGridLayout" name="btn_grid">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="1" column="1">
+            <widget class="QPushButton" name="btn_play">
+             <property name="toolTip">
+              <string>Play </string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
     background-position: left center;
     background-repeat: no-repeat;
     border: none;
@@ -224,90 +294,155 @@ QPushButton:pressed {
     background-color:  transparent;
      border: 2px solid #0c84bd; /* blue-charcoal 600 */
 }</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="1" column="1">
-          <widget class="QPushButton" name="btn_play">
-           <property name="toolTip">
-            <string>Play </string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="../icons/icon.qrc">
-             <normaloff>:/Icons/cil-media-play.png</normaloff>:/Icons/cil-media-play.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>50</width>
-             <height>50</height>
-            </size>
-           </property>
-          </widget>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../icons/icon.qrc">
+               <normaloff>:/Icons/cil-media-play.png</normaloff>:/Icons/cil-media-play.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>50</width>
+               <height>50</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="btn_save">
+             <property name="toolTip">
+              <string>Save test case</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+    background-position: left center;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+}
+QPushButton:hover {
+    background-color:transparent; /* blue-charcoal 700 */
+ border: 1px solid #0c84bd; /* blue-charcoal 600 */
+}
+
+QPushButton:pressed {
+    background-color:  transparent;
+     border: 2px solid #0c84bd; /* blue-charcoal 600 */
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../icons/icon.qrc">
+               <normaloff>:/Icons/cil-save.png</normaloff>:/Icons/cil-save.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>50</width>
+               <height>50</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="btn_reset">
+             <property name="toolTip">
+              <string>Reset and start over</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+    background-position: left center;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+}
+QPushButton:hover {
+    background-color:transparent; /* blue-charcoal 700 */
+ border: 1px solid #0c84bd; /* blue-charcoal 600 */
+}
+
+QPushButton:pressed {
+    background-color:  transparent;
+     border: 2px solid #0c84bd; /* blue-charcoal 600 */
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../icons/icon.qrc">
+               <normaloff>:/Icons/cil-reload.png</normaloff>:/Icons/cil-reload.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>50</width>
+               <height>50</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="btn_start">
+             <property name="toolTip">
+              <string>Start Recording</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+    background-position: left center;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+}
+QPushButton:hover {
+    background-color:transparent; /* blue-charcoal 700 */
+ border: none;
+}
+
+QPushButton:pressed {
+    background-color:  transparent;
+     border: 2px solid #0c84bd; /* blue-charcoal 600 */
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../icons/icon.qrc">
+               <normaloff>:/Icons/record_start.png</normaloff>:/Icons/record_start.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>100</width>
+               <height>100</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
-         <item row="1" column="0">
-          <widget class="QPushButton" name="btn_reset">
-           <property name="toolTip">
-            <string>Reset and start over</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="../icons/icon.qrc">
-             <normaloff>:/Icons/cil-reload.png</normaloff>:/Icons/cil-reload.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>50</width>
-             <height>50</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QPushButton" name="btn_start">
-           <property name="toolTip">
-            <string>Start Recording</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="../icons/icon.qrc">
-             <normaloff>:/Icons/record_start.png</normaloff>:/Icons/record_start.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>100</width>
-             <height>100</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QPushButton" name="btn_save">
-           <property name="toolTip">
-            <string>Save test case</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="../icons/icon.qrc">
-             <normaloff>:/Icons/cil-save.png</normaloff>:/Icons/cil-save.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>50</width>
-             <height>50</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
+         <item>
           <widget class="QLabel" name="lbl_timer">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>50</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <family>Segoe UI</family>
@@ -330,28 +465,28 @@ QPushButton:pressed {
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QLabel" name="lbl_message">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Start Recording!</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
         </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="lbl_message">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Start Recording!</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
-        </property>
        </widget>
       </item>
      </layout>
@@ -359,6 +494,10 @@ QPushButton:pressed {
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>minimizeAppBtn</tabstop>
+  <tabstop>closeAppBtn</tabstop>
+ </tabstops>
  <resources>
   <include location="../icons/icon.qrc"/>
  </resources>

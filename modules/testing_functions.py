@@ -4,11 +4,14 @@ from main import *
 from skimage.metrics import structural_similarity
 from .test_report_ui import Ui_TestReport
 from . settings import *
+from . namedpipes import *
 import pyautogui
 import concurrent.futures
 import pygetwindow as gw
 from pynput import keyboard, mouse
 from pynput.mouse import Controller
+import mss
+from . debug_log import *
 
 class StartTestingDialog(qtw.QDialog):
 
@@ -91,7 +94,7 @@ class TestingManager(QObject):
     failedscreens = Signal(str,int,object)
     stopped = Signal()
 
-    def __init__(self, test_manager_hndle, report_worker, test_cases):
+    def __init__(self, test_manager_hndle, report_worker,workspaceManager, test_cases,pipes):
         super().__init__()
         self.test_manager = test_manager_hndle
         self._is_running = True
@@ -99,11 +102,14 @@ class TestingManager(QObject):
         self._screenshots = []
         self.ssindex = 0
         self.report_worker = report_worker
+        self.workspaceManager = workspaceManager
         self.loaded_test_cases = test_cases
         self.image_iterator = None
         self.error_msg = "Unkown Error - Please check the logs."
         self.curr_test_start_time = None
         self.screenvalidationFailed = False
+        self.pipes = pipes
+        self.debug_log = DebugLogger()
 
     def run(self):
 
@@ -164,21 +170,25 @@ class TestingManager(QObject):
                 
                     
             except Exception as e:
-                print(f"An unexpected error occurred: {e}")
+                str = f"An unexpected error occurred: {e}"
+                print(str)
+                self.debug_log.write_log(str)
                 self.report_writeReport.emit(test_case.test_case_id,"Failed","Unkown Error")
                 self.progress.emit(test_case.test_case_id, "Failed")
+                #self.pipes.disconnectPOS()
                 self.stop()
         self.finished.emit()
+        #self.pipes.disconnectPOS()
         #self.stop()
 
     def execute_pre_check(self, test_case):
         try:
-            get_config(test_case.strSourcePath)
-            TotalScreenshot = CONFIG.getint('DEFAULT','screen shot index')
-            dirname = os.path.join(test_case.strSourcePath,f"screenshot-{test_case.test_case_id}")
-            for filename in os.listdir(dirname):
-                if filename.lower().endswith((".png")):
-                    filepath = os.path.join(dirname, filename)
+            assets = test_case.asset_ids
+            #get_config(test_case.strSourcePath)
+            TotalScreenshot = len(assets)
+            for id in assets:
+                filepath = os.path.join(self.workspaceManager.get_assets_path(), id)
+                if os.path.exists(filepath):
                     refImage = cv2.imread(filepath)
                     self._screenshots.append(refImage)
             
@@ -207,13 +217,10 @@ class TestingManager(QObject):
                 break  # Stop execution if requested
 
             if "#SCREENSHOT" in step:
-                current_screen = pyautogui.screenshot(region=(self.activeWindow_left,self.activeWindow_top, self.activeWindow_width, self.activeWindow_height))
-                self.validate_screenshot(test_case.test_case_id, current_screen)
-                #if self.validate_screenshot(test_case.test_case_id, current_screen):
-                #    continue
-                #else:
-                    #report worker emit to compare and write report
-                #    return False
+                if test_case.auto_connect and self.pipes.listen_for_screenshot_signal():
+                    self.get_screenshot()
+                else:
+                    self.get_screenshot(test_case)
 
             elif "#SKIP" in step:
                 print(f"⏭️ Skipping step {index + 1}")
@@ -222,22 +229,30 @@ class TestingManager(QObject):
             elif "#ACTIVEWINDOW=" in step:
                 name = step.split("=",1)[1].strip()[1:-1]
                 print(f"name = {name}")
+                print(f"before active window loop - {self.windowTitle}")
                 if(name != self.windowTitle):
                     retry = 0
+                    print(f"after1 active window loop - {self.windowTitle}")
                     while (retry < 5 and name != self.windowTitle):
-                        activesessions = gw.getWindowsWithTitle(name)
+                        print(f"after 2 active window loop - {self.windowTitle}")
+                        try:
+                            activesessions = gw.getWindowsWithTitle(name)
+                            if not activesessions:  
+                                print(f"No active windows found with title '{name}'.")
+                        except Exception as e:
+                            print(f"Error while fetching windows: {e}")
                         print(f"activesessions = {activesessions}")
                         if not activesessions:
-                            print(f"❌ Cannot activate the window - Failing Test case")
+                            str = f"❌ Cannot find the window - {name} - Failing Test case"
+                            self.debug_log.write_log(str)
+                            print(str)
                         else:
                             self.activeWindow = activesessions[0]
-                            print(f"self.activeWindow = {self.activeWindow}")
                             try:
                                 self.activeWindow.activate()
                             except:
                                 self.activeWindow.minimize()
                                 self.activeWindow.activate()
-                            print("after activate")
                             self.windowTitle = gw.getActiveWindowTitle()
                             if self.activeWindow.isMaximized:
                                 self.activeWindow_left, self.activeWindow_top,self.activeWindow_width, self.activeWindow_height = 0, 0, self.activeWindow.width-20,self.activeWindow.height-20
@@ -245,20 +260,20 @@ class TestingManager(QObject):
                                 self.activeWindow_left, self.activeWindow_top,self.activeWindow_width, self.activeWindow_height = self.activeWindow.left+10, self.activeWindow.top+5, self.activeWindow.width-20,self.activeWindow.height-20
                         retry+=1
 
-                    print("comparison")
                     if(name != self.windowTitle):
                         self.error_msg = "Test Case Failed due to no active window"
                         self.error.emit(test_case.test_case_id,self.error_msg)
                         return False
-                    
+                print(f"out of active window loop - {self.windowTitle}")
 
             else:
                 try:
                     exec(step)  # Execute pyautogui steps
-                    print(f"{step}")
-                    #time.sleep(0.2)
+                    #print(f"{step}")
                 except Exception as e:
-                    print(f"❌ Error executing step {index + 1}: {e}")
+                    str = f"❌ Error executing step {index + 1}: {e}"
+                    print(str)
+                    self.debug_log.write_log(str)
                     return False  # Stop test case if an error occurs
                 
         print(f"In execute test case - length - index{len(test_case.steps)} - {index}")
@@ -267,6 +282,25 @@ class TestingManager(QObject):
         else:
             return -1 
     
+    def get_screenshot(self, test_case):
+        left, top, width, height = (
+                    self.activeWindow.left, self.activeWindow.top,
+                    self.activeWindow.width, self.activeWindow.height
+                )
+
+        if self.activeWindow.isMaximized:
+           left, top, width, height = left+8, top+8, width-16, height-16
+        else:
+           left, top, width, height = left+8, top, width-16, height-8
+        with mss.mss() as sct:
+            monitor_region = {"left": left, "top": top,  "width": width, "height": height}
+            captureScreen = sct.grab(monitor_region)
+
+            # Optionally convert to PIL.Image if needed:
+            from PIL import Image
+            current_screen = Image.frombytes("RGB", captureScreen.size, captureScreen.rgb)
+        self.validate_screenshot(test_case.test_case_id, current_screen)
+
     #Function to validate and give the score for images
     def validate_screenshot(self,test_case_id, current_screen):
         """Compares a screenshot to determine pass/fail."""

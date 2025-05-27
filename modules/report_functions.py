@@ -18,7 +18,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 class ReportingManager(QObject):
     finished = Signal(str)
 
-    def __init__(self, workspace_path):
+    def __init__(self, reports_path):
         super().__init__()
         self.report = {
             "test_cases":[],
@@ -28,6 +28,9 @@ class ReportingManager(QObject):
                 "failed": 0,
                 "blocked": 0,
                 "total_execution_time": "",
+                "start_time": "",
+                "end_time": "",
+                "report_id": "",
             }
         }
         self.curr_test_id = ""
@@ -37,7 +40,7 @@ class ReportingManager(QObject):
         self.curr_test_start_time = None
         self.validation_failed_img = {}
         self.start_time = time.time()
-        self.workspace = workspace_path
+        self.workspace = reports_path
 
     @Slot(object,object,object)
     def compare_screens(self,diff,expected_image,current_image_rgb):
@@ -111,6 +114,9 @@ class ReportingManager(QObject):
         """Finalizes execution time and exports the report."""
         if self.curr_test_id != "":
             self.write_report(self.curr_test_id,"Unkown","Unkown Error - cannot fetch details")
+
+        self.report["execution_summary"]["end_time"] = datetime.today().strftime('%m/%d/%Y - %H:%M')
+        self.report["execution_summary"]["start_time"] = time.strftime('%m/%d/%Y - %H:%M', time.localtime(self.start_time))
         total_time = int(time.time() - self.start_time)
         minutes, seconds = divmod(total_time, 60)
         hours, minutes = divmod(minutes, 60)
@@ -122,12 +128,13 @@ class ReportingManager(QObject):
 
         filename = ""
         self.reportid = f"{datetime.today().strftime('%Y%m%d%H%M')}"
+        self.report["execution_summary"]["report_id"] = self.reportid
 
         if(len(self.report["test_cases"])):
             filename = os.path.join(self.workspace, f"TestReport - {self.reportid}.pdf")
             self.gather_report(filename)
 
-        time.sleep(5)
+        #time.sleep(5)
 
         self.finished.emit(filename)
     

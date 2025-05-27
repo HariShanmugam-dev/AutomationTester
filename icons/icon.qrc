@@ -1,11 +1,14 @@
 <RCC>
   <qresource prefix="Icons">
+    <file>cil-check-alt.png</file>
+    <file>cil-check.png</file>
     <file>home_logo.png</file>
     <file>reccorder.png</file>
     <file>reccorder_hover.png</file>
     <file>cil-save.png</file>
     <file>cil-media-play.png</file>
     <file>record_start.png</file>
+    <file>icon-delete.png</file>
     <file>record_stop.png</file>
     <file>cil-media-stop.png</file>
     <file>cil-folder.png</file>

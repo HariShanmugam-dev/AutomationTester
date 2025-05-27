@@ -3,6 +3,8 @@ from textwrap import dedent
 from . recorder_ui import Ui_RecorderWindow
 from . test_case import TestCase, TestCaseManager
 from . settings import *
+from . namedpipes import *
+
 import time
 import os
 from datetime import datetime
@@ -15,6 +17,9 @@ from pynput import keyboard, mouse
 from pynput.mouse import Controller
 from . debug_log import *
 import math
+import mss
+import mss.tools
+
 from PySide6 import QtWidgets as qtw
 from PySide6.QtGui import QPixmap
 from PySide6.QtCore import Qt
@@ -29,7 +34,7 @@ def get_test_case_path(test_case_id):
     return os.path.join(my_temp_folder, f"TestCase -{test_case_id}")
 
 def get_temp_file_path(test_case_id):
-    return os.path.join(get_temp_folder_path(test_case_id), f"TestCase -{test_case_id}.json")
+    return os.path.join(get_temp_folder_path(test_case_id), f"{test_case_id}.json")
 
 def get_screenshot_path(test_case_id):
     return os.path.join(get_temp_folder_path(test_case_id), f"screenshot-{test_case_id}")
@@ -41,19 +46,24 @@ def get_header(test_case_id):
 class Recorder(QWidget, Ui_RecorderWindow):
 
 
-    def __init__(self, main_window, control):
+    def __init__(self, main_window, control,test_case_config):
         super().__init__()
         self.debug_log = DebugLogger()
         self.setupUi(self)
         self.main_window = main_window  # Store reference to MainWindow
         self.control = control
-        self.record_ctrl = RecordCtrl(self)
+        self.test_case_config = test_case_config
+        self.record_ctrl = RecordCtrl(self,self.test_case_config)
 
         self.btn_play.setEnabled(False)
         self.btn_save.setEnabled(False)
         self.btn_reset.setEnabled(False)
+        self.maximizeRestoreAppBtn.setVisible(False)
+
         # MINIMIZE
-        self.minimizeAppBtn.clicked.connect(lambda: self.showMinimized()) 
+        self.minimizeAppBtn.clicked.connect(lambda: self.minimize_recorder()) 
+        # MAXIMIZE
+        self.maximizeRestoreAppBtn.clicked.connect(lambda: self.maximize_recorder())
         # CLOSE APPLICATION
         self.closeAppBtn.clicked.connect(lambda: self.close_recorder())
 
@@ -68,33 +78,7 @@ class Recorder(QWidget, Ui_RecorderWindow):
         self.timer = QTimer(self)                 # Timer to update the label
         self.time_elapsed = QTime(0, 0)           # Store elapsed time
         self.timer.timeout.connect(self.update_timer_label)
-
-        # In your menu creation:
-        self.toggleBarcode = QAction("Enabled Barcode Scanning", self.settings)  # Store the QAction as an instance variable
-
-        # Create a menu
-        menu = QMenu(self.settings)
-        menu.setStyleSheet("background-color: #05151f;")
-        # Add actions to the menu
-        menu.addAction(self.toggleBarcode)
-        self.toggleBarcode.triggered.connect(self.toggle_barcode_mode)
-
-        # Connect the tool button to show the menu
-        self.settings.setMenu(menu)
         
-
-    def toggle_barcode_mode(self):
-        #Toggle barcode scanning mode
-        self.record_ctrl.barcode_mode = not self.record_ctrl.barcode_mode
-        enabled = self.record_ctrl.barcode_mode  # Get the current state
-
-        if enabled:
-            self.toggleBarcode.setText("Disable Barcode Scanning")  # Update menu text
-        else:
-            self.toggleBarcode.setText("Enable Barcode Scanning")  # Update menu text
-
-        print(f"Barcode mode {'enabled' if enabled else 'disabled'}")
-        self.debug_log.write_log(f"Barcode mode {'enabled' if enabled else 'disabled'}")
 
     def toggle_recording(self):
         if self.record_ctrl.recording:
@@ -102,6 +86,7 @@ class Recorder(QWidget, Ui_RecorderWindow):
             icon5.addFile(u":/Icons/record_start.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
             self.btn_start.setIcon(icon5)
             self.record_ctrl.stop_recording()
+            self.maximize_recorder()
 
             self.btn_start.setEnabled(False)
             self.btn_play.setEnabled(True)
@@ -122,6 +107,7 @@ class Recorder(QWidget, Ui_RecorderWindow):
             self.btn_play.setEnabled(False)
             self.btn_save.setEnabled(False)
             self.btn_reset.setEnabled(False)
+            self.minimize_recorder()
 
     def update_timer_label(self):
         #Update the QLabel with the elapsed time.
@@ -142,7 +128,7 @@ class Recorder(QWidget, Ui_RecorderWindow):
             self.main_window.ui.initialFrame.setVisible(False)
             self.main_window.ui.finalFrame.setEnabled(True)
             self.main_window.ui.finalFrame.setVisible(True)
-            description = "Test Case - " + self.record_ctrl.current_TestCaseId
+            description = self.test_case_config.description
             self.main_window.ui.description.setText(description)
             self.load_screenshot()
             #send description and everything back to main window
@@ -243,6 +229,69 @@ class Recorder(QWidget, Ui_RecorderWindow):
             self.record_ctrl.stop_recording()
         self.close()
 
+    def minimize_recorder(self):
+        # Hide unnecessary buttons
+        self.maximizeRestoreAppBtn.setVisible(True)
+        self.minimizeAppBtn.setVisible(False)
+        self.btn_play.setVisible(False)
+        self.btn_save.setVisible(False)
+        self.btn_reset.setVisible(False)
+        self.lbl_message.setVisible(False)
+
+        # Remove btn_start and lbl_timer from the grid
+        self.btn_grid.removeWidget(self.btn_start)
+        self.btn_grid.removeWidget(self.lbl_timer)
+
+        self.btn_start.setIconSize(QSize(50, 50))  # Set icon size for minimized view
+
+        # Create horizontal layout for minimized view
+        self.mini_layout = QHBoxLayout()
+        self.mini_layout.addWidget(self.btn_start)
+        self.mini_layout.addWidget(self.lbl_timer)
+
+        # Create a temporary container widget to hold them
+        self.mini_container = QWidget()
+        self.mini_container.setLayout(self.mini_layout)
+
+        # Add this container to the main widget layout
+        self.MainLayout = self.recorder.layout()  # Assuming main layout is set on 'recorder'
+        self.MainLayout.addWidget(self.mini_container)
+
+        # Resize dialog properly and enforce it
+        self.setMinimumSize(250, 150)
+        self.resize(250, 150)
+        self.setMaximumSize(250, 150)
+
+        print(f"Minimized size: {self.size()}")
+        
+
+    def maximize_recorder(self):
+        # Remove minimized layout and container
+        if hasattr(self, 'mini_container'):
+            self.MainLayout.removeWidget(self.mini_container)
+            self.mini_container.deleteLater()
+
+        # Restore widgets to btn_grid
+        self.btn_grid.addWidget(self.btn_start, 0, 1)
+        self.btn_grid.addWidget(self.lbl_timer, 2, 1)
+        self.btn_start.setIconSize(QSize(100, 100))  # Set icon size for minimized view
+
+        # Show hidden buttons
+        self.maximizeRestoreAppBtn.setVisible(False)
+        self.minimizeAppBtn.setVisible(True)
+        self.btn_play.setVisible(True)
+        self.btn_save.setVisible(True)
+        self.btn_reset.setVisible(True)
+        self.lbl_message.setVisible(True)
+
+        # Restore window size limits
+        self.setMinimumSize(QSize(260, 330))  # your original size
+        self.setMaximumSize(QSize(16777215, 16777215))  # removes max limit
+        self.resize(260, 330)
+
+        print(f"Maximized size: {self.size()}")
+
+    
     def mousePressEvent(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
             self.old_pos = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
@@ -308,7 +357,7 @@ class RecordCtrl(QObject):
         keyboard.Key.tab: 'tab',
         keyboard.Key.up: 'up',
     }
-    def __init__(self, recorder_window):
+    def __init__(self, recorder_window,test_case_config):
         super().__init__()
         self._screenshots = []
         self._lastx, self._lasty = pyautogui.position()
@@ -316,7 +365,8 @@ class RecordCtrl(QObject):
         self.last_time = time.perf_counter()
         self._error = "### This key is not supported yet"
         self.windowTitle = ""
-        self.current_TestCaseId = get_test_case_id()
+        self.test_case_config = test_case_config
+        self.current_TestCaseId = self.test_case_config.test_case_id
         self._capture = [get_header(self.current_TestCaseId)]
         self.testcase = None
         self.temp_folder = get_temp_folder_path(self.current_TestCaseId)
@@ -334,10 +384,13 @@ class RecordCtrl(QObject):
         self.mouse_drag = False
         self.mouse_drag_duration = 0.0
         self.recorder_window = recorder_window
+        self.bfirst = True
+        if self.test_case_config.auto_connect:
+            self.pipes = AutoTestPipeServer()
 
     def start_recording(self):
         self.recording = True
-        self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=3)
+        self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=6)
         self.listener_mouse = mouse.Listener(on_move=self.on_move, on_click=self.on_click, on_scroll=self.on_scroll)
         self.listener_keyboard = keyboard.Listener(on_press=self.on_press, on_release=self.on_release)
         self.listener_mouse.start()
@@ -350,18 +403,16 @@ class RecordCtrl(QObject):
             self.executor.shutdown(wait=True)  # Wait for all tasks to finish
             self.executor = None
         try:
-            self.save_screenshot()
-            description = f"Test Case - {self.current_TestCaseId}"
+            self.test_case_config.asset_ids = self.save_screenshot()
             # Remove the recording trigger event
+            #self._capture.pop()
             self._capture.pop()
-            self._capture.pop()
-            self.testcase = TestCase(self.current_TestCaseId,description,self._capture)
+            self.testcase = TestCase(self.recorder_window.test_case_config,self._capture)
 
             with open(self.temp_file, 'w') as f:
                 json.dump(self.testcase.to_dict(), f, indent=4)  # Save as JSON
-            get_config(self.temp_folder)
-            CONFIG["DEFAULT"]["screen shot index"] = str(self.screenshot_index-1)
-            save_config()
+            
+            #self.pipes.disconnectPOS()
         except Exception as e:
             self.debug_log.write_log(f"Error during stop recording: {e}")
             print(f"Error during stop recording: {e}")
@@ -370,30 +421,47 @@ class RecordCtrl(QObject):
         if not self.recording:
             return False
         try:
-            time.sleep(0.3)
+            if self.test_case_config.auto_connect and self.pipes.listen_for_screenshot_signal():
+                print(f"Screenshot signal received")
+                self.get_screenshot()
+            else:
+                print(f"Screenshot signal not received")
+                time.sleep(0.3)
+                self.get_screenshot()
+        except Exception as e:
+            print(f"Error getting screenshot signal: {e}")
+            self.debug_log.write_log(f"Error getting screenshot signal: {e}")
+
+    def get_screenshot(self):
+        print(f"capture screenshot")
+        if not self.recording:
+            return False
+        try:
             b = time.perf_counter()
             timeout = float(b - self.last_time)
             if timeout > 0.0:
                 self._capture.append(f"time.sleep({timeout})")
             self.last_time = b
-
             self.activeWindow = gw.getWindowsWithTitle(self.windowTitle)[0]
-            # Get exact window bounds
             if self.activeWindow:
                 left, top, width, height = (
-                        self.activeWindow.left, self.activeWindow.top, 
-                        self.activeWindow.width, self.activeWindow.height
-                    )
-                #modify the bounds by cutting the edges
+                    self.activeWindow.left, self.activeWindow.top,
+                    self.activeWindow.width, self.activeWindow.height
+                )
                 if self.activeWindow.isMaximized:
-                    left, top,width, height = 0, 0, width-20,height-20
+                    left, top, width, height = left+8, top+8, width-16, height-16
                 else:
-                    left, top,width, height = left+10, top+5, width-20,height-20
+                    left, top, width, height = left+8, top, width-16, height-8
                 self._capture.append(f"#SCREENSHOT")
-                self.recorder_window.showMinimized()
-                captureScreen = pyautogui.screenshot(region=(left,top, width, height))
+                self.recorder_window.hide()
+                with mss.mss() as sct:
+                    monitor_region = {"left": left, "top": top,  "width": width, "height": height}
+                    captureScreen = sct.grab(monitor_region)
+                    # Optionally convert to PIL.Image if needed:
+                    from PIL import Image
+                    img = Image.frombytes("RGB", captureScreen.size, captureScreen.rgb)
+                    self._screenshots.append(img)
                 self.recorder_window.showNormal()
-                self._screenshots.append(captureScreen)
                 self.debug_log.write_log("Screenshot captured")
         except Exception as e:
             print(f"Error capturing screenshot: {e}")
@@ -404,7 +472,7 @@ class RecordCtrl(QObject):
         if not os.path.exists(self.temp_screenshotpath):
             os.makedirs(self.temp_screenshotpath)
         for i, screenshot in enumerate(self._screenshots):
-            ssname = f"screenshot_{self.screenshot_index:04d}.png"
+            ssname = f"{self.current_TestCaseId}{self.screenshot_index:04d}.png"
             filename = os.path.join(self.temp_screenshotpath, ssname)
             screenshotlist.append(ssname)
             try:
@@ -452,6 +520,9 @@ class RecordCtrl(QObject):
         if not self.recording:
             return False
         
+        if not self.bfirst and not self.get_active_window():
+            return
+        self.bfirst = False
         if pressed:
             self.mouse_down = True
             if button == mouse.Button.left:

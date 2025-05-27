@@ -143,6 +143,8 @@ class UIFunctions(MainWindow):
         for w in self.ui.topMenu.findChildren(QPushButton):
             if w.objectName() != widget:
                 w.setStyleSheet(UIFunctions.deselectMenu(w.styleSheet()))
+        if self.ui.btn_settings != widget:
+            self.ui.btn_settings.setStyleSheet(UIFunctions.deselectMenu(self.ui.btn_settings.styleSheet()))
 
     # Enable Windows Snap
     def enable_windows_snap(self):
@@ -158,7 +160,7 @@ class UIFunctions(MainWindow):
             # IF DOUBLE CLICK CHANGE STATUS
             if event.type() == QEvent.MouseButtonDblClick:
                 QTimer.singleShot(250, lambda: UIFunctions.maximize_restore(self))
-        self.ui.titleRightInfo.mouseDoubleClickEvent = dobleClickMaximizeRestore
+        self.ui.leftBox.mouseDoubleClickEvent = dobleClickMaximizeRestore
         #STANDARD TITLE BAR
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.Window)
         self.setAttribute(Qt.WA_TranslucentBackground)
@@ -171,9 +173,11 @@ class UIFunctions(MainWindow):
             # MOVE WINDOW
             if event.buttons() == Qt.LeftButton:
                 self.move(self.pos() + event.globalPos() - self.dragPos)
-                self.dragPos = event.globalPos()
+                self.dragPos = event.globalPosition().toPoint()
                 event.accept()
-        self.ui.titleRightInfo.mouseMoveEvent = moveWindow
+        self.ui.leftBox.mouseMoveEvent = moveWindow
+
+        
 
         # CUSTOM GRIPS
         self.left_grip = CustomGrip(self, Qt.LeftEdge, True)
@@ -200,7 +204,9 @@ class UIFunctions(MainWindow):
         self.ui.maximizeRestoreAppBtn.clicked.connect(lambda: UIFunctions.maximize_restore(self))
 
         # CLOSE APPLICATION
-        self.ui.closeAppBtn.clicked.connect(lambda: self.close())
+        #self.ui.closeAppBtn.clicked.connect(lambda: self.close())
+
+
 
     def resize_grips(self):
         self.left_grip.setGeometry(0, 10, 10, self.height())

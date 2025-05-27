@@ -8,7 +8,6 @@ import platform
 from modules import *
 from widgets import *
 #os.environ["QT_FONT_DPI"] = "96" # FIX Problem for High DPI and Scale above 100%
-import ctypes
 #ctypes.windll.shcore.SetProcessDpiAwareness(0)
 
 # SET AS GLOBAL WIDGETS
@@ -27,9 +26,11 @@ class MainWindow(QMainWindow):
         # ///////////////////////////////////////////////////////////////
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.pipes = AutoTestPipeServer()
+        self.pipes = None
         global widgets
         widgets = self.ui
+        self.block_keys = False  # Flag to block key events
+        self.debug_log = DebugLogger()
 
         # APP NAME
         # ///////////////////////////////////////////////////////////////
@@ -39,6 +40,16 @@ class MainWindow(QMainWindow):
         # APPLY TEXTS
         self.setWindowTitle(title)
         widgets.titleRightInfo.setText(description)
+
+        # Print system information
+        self.debug_log.write_log(f"System Information:\n"
+                                 f"OS: {platform.system()} {platform.release()}\n"
+                                    f"Python Version: {platform.python_version()}\n"
+                                    f"Architecture: {platform.architecture()[0]}\n"
+                                    f"Machine: {platform.machine()}\n"
+                                    f"Processor: {platform.processor()}\n")
+        self.debug_log.write_log(f"Application Version: {APP_VERSION}\n")
+        
 
         # TOGGLE MENU
         # ///////////////////////////////////////////////////////////////
@@ -75,15 +86,24 @@ class MainWindow(QMainWindow):
         widgets.btn_explorer.clicked.connect(openCloseLeftBox)
         widgets.extraCloseColumnBtn.clicked.connect(openCloseLeftBox)
 
+        widgets.closeAppBtn.clicked.connect(lambda: ControlFunctions.close_application(self))
+
         # SHOW APP
         # ///////////////////////////////////////////////////////////////
-        self.show()
+        #self.show()
 
         # SET HOME PAGE AND SELECT MENU
         # ///////////////////////////////////////////////////////////////
         widgets.stackedWidget.setCurrentWidget(widgets.home)
         widgets.btn_home.setStyleSheet(UIFunctions.selectMenu(widgets.btn_home.styleSheet()))
+        ControlFunctions.load_recent_files_to_list(self)
         ControlFunctions.setHomeButtons(self)
+        
+
+
+        """threading.Thread(target=self._monitor_connection,
+                         args=(self.pipes,),
+                         daemon=True).start()"""
 
     # BUTTONS CLICK
     # ///////////////////////////////////////////////////////////////
@@ -109,6 +129,7 @@ class MainWindow(QMainWindow):
 
         elif btnName == "btn_home":
             widgets.stackedWidget.setCurrentWidget(widgets.home)
+            ControlFunctions.load_recent_files_to_list(self)
             ControlFunctions.setHomeButtons(self)
         
         elif btnName == "btn_settings":
@@ -132,7 +153,7 @@ class MainWindow(QMainWindow):
     # ///////////////////////////////////////////////////////////////
     def mousePressEvent(self, event):
         # SET DRAG POS WINDOW
-        self.dragPos = event.globalPos()
+        self.dragPos = event.globalPosition().toPoint()
 
         # PRINT MOUSE EVENTS
         """if event.buttons() == Qt.LeftButton:
@@ -140,10 +161,55 @@ class MainWindow(QMainWindow):
         if event.buttons() == Qt.RightButton:
             print('Mouse click: RIGHT CLICK')"""
 
+    def open_project(self, file_path):
+        """Open the selected project."""
+        ControlFunctions.open_project(self,file_path)
 
+    def _monitor_connection(self, server):
+        server = AutoTestPipeServer()
+        while True:
+            status = '🟢 Connected' if server.is_connected() else '🔴 Not connected'
+            self.ui.label_message.setText(f"POS Connection Status: {status}")
+            print(f"POS connection status: {status}")
+            time.sleep(5)
+
+    def handle_cli_args(self, args):
+        self.debug_log.write_log(f"CLI arguments received: {args}")
+        if args.run_project:
+            file_path = args.run_project
+            if os.path.exists(file_path):
+                self.open_project(file_path)
+                ControlFunctions.run_project(self, args)
+            else:
+                print(f"Error: Project file '{file_path}' does not exist.")
+                sys.exit(1)
+            
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Automation Tester CLI")
+    parser.add_argument("--run-project", type=str, help="Run specified .atest project file")
+    parser.add_argument("--cli", action="store_true", help="Run in cli mode")
+    parser.add_argument("--output-report", type=str, help="Output report path after test execution")
+    parser.add_argument("--with-setup", action="store_true", help="Run setup and cleanup scripts before and after tests")
+    args, unknown = parser.parse_known_args()
+
+    # If no known args supplied — means normal GUI launch
+    if not any(vars(args).values()):
+        print("No CLI arguments supplied — starting in normal GUI mode.")
+        return None
+
+    print(f"CLI arguments detected: {args}")
+    return args
 
 if __name__ == "__main__":
+    args = parse_args()
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon("icon.ico"))
     window = MainWindow()
+    window.show()
+    if args is not None:
+        window.handle_cli_args(args)
+    # SHOW APP
+    # ///////////////////////////////////////////////////////////////
+    #if args is None or not args.headless:
     sys.exit(app.exec_())

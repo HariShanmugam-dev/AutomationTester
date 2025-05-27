@@ -17,20 +17,20 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QAbstractSpinBox, QApplication,
     QCheckBox, QComboBox, QCommandLinkButton, QFormLayout,
-    QFrame, QGraphicsView, QGridLayout, QGroupBox,
-    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
-    QListView, QListWidget, QListWidgetItem, QMainWindow,
-    QPlainTextEdit, QPushButton, QRadioButton, QScrollArea,
-    QScrollBar, QSizePolicy, QSlider, QSpacerItem,
-    QSpinBox, QStackedWidget, QTableWidget, QTableWidgetItem,
-    QTextBrowser, QVBoxLayout, QWidget)
+    QFrame, QGraphicsView, QGridLayout, QHBoxLayout,
+    QHeaderView, QLabel, QLineEdit, QListView,
+    QListWidget, QListWidgetItem, QMainWindow, QPlainTextEdit,
+    QPushButton, QRadioButton, QScrollArea, QScrollBar,
+    QSizePolicy, QSlider, QSpacerItem, QSpinBox,
+    QStackedWidget, QTableWidget, QTableWidgetItem, QTextBrowser,
+    QVBoxLayout, QWidget)
 from . icon_rc import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1125, 820)
+        MainWindow.resize(1181, 820)
         MainWindow.setMinimumSize(QSize(600, 560))
         self.styleSheet = QWidget(MainWindow)
         self.styleSheet.setObjectName(u"styleSheet")
@@ -164,14 +164,14 @@ class Ui_MainWindow(object):
 "    background-color: #0b6999; /* blue-charcoal 700 */\n"
 "}\n"
 "#bottomMenu .QPushButton:pressed {\n"
-"    background-color: rgb(189, 147, 249);\n"
+"    background-color:  rgb(191, 227, 254);\n"
 "    color: rgb(255, 255, 255);\n"
 "}\n"
 "\n"
 "/* Bottom Bar */\n"
 "#bottomBar {\n"
-"    background-color: #0d597"
-                        "f; /* blue-charcoal 800 */\n"
+"    background-color: #0d59"
+                        "7f; /* blue-charcoal 800 */\n"
 "}\n"
 "#bottomBar QLabel {\n"
 "    font-size: 11px;\n"
@@ -207,8 +207,8 @@ class Ui_MainWindow(object):
 "    color: #05151f; /* blue-charcoal 950 - darker text for PushButton */\n"
 "}\n"
 "#rightButtons .QPushButton:hover {\n"
-"    backg"
-                        "round-color: #0b6999; /* blue-charcoal 700 */\n"
+"    back"
+                        "ground-color: #0b6999; /* blue-charcoal 700 */\n"
 "    border-style: solid;\n"
 "    border-radius: 4px;\n"
 "}\n"
@@ -241,8 +241,8 @@ class Ui_MainWindow(object):
 "    subcontrol-position: right;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
-"QScrollB"
-                        "ar::sub-line:horizontal {\n"
+"QScroll"
+                        "Bar::sub-line:horizontal {\n"
 "    border: none;\n"
 "    background: #0b6999; /* blue-charcoal 700 */\n"
 "    width: 20px;\n"
@@ -274,8 +274,8 @@ class Ui_MainWindow(object):
 "    background: #0b6999; /* blue-charcoal 700 */\n"
 "    height: 20px;\n"
 "    border-bottom-left-radius: 4px;\n"
-"    border-bottom-right-radius: "
-                        "4px;\n"
+"    border-bottom-right-radius:"
+                        " 4px;\n"
 "    subcontrol-position: bottom;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
@@ -301,8 +301,8 @@ class Ui_MainWindow(object):
 "#extraCloseColumnBtn:pressed { background-color:rgb(23, 26, 30); border-style: solid; border-radius: 4px; }\n"
 "\n"
 "#extraReloadBtn { background-color:rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }\n"
-"#ext"
-                        "raReloadBtn:hover { background-color:  #0b6999; border-style: solid; border-radius: 4px; }\n"
+"#ex"
+                        "traReloadBtn:hover { background-color:  #0b6999; border-style: solid; border-radius: 4px; }\n"
 "#extraReloadBtn:pressed { background-color:rgb(23, 26, 30); border-style: solid; border-radius: 4px; }\n"
 "\n"
 "#homeWidget .QLabel{\n"
@@ -321,6 +321,10 @@ class Ui_MainWindow(object):
 "#homeWidget .QPushButton:pressed {\n"
 "    background-color: transparent;\n"
 "    color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"#homeWidget{\n"
+"border: none;\n"
 "}")
         self.appMargins = QVBoxLayout(self.styleSheet)
         self.appMargins.setSpacing(0)
@@ -472,7 +476,7 @@ class Ui_MainWindow(object):
 
         self.btn_edit = QPushButton(self.topMenu)
         self.btn_edit.setObjectName(u"btn_edit")
-        self.btn_edit.setEnabled(True)
+        self.btn_edit.setEnabled(False)
         sizePolicy.setHeightForWidth(self.btn_edit.sizePolicy().hasHeightForWidth())
         self.btn_edit.setSizePolicy(sizePolicy)
         self.btn_edit.setMinimumSize(QSize(0, 45))
@@ -611,26 +615,26 @@ class Ui_MainWindow(object):
 "}")
         self.extraTopMenu.setFrameShape(QFrame.Shape.NoFrame)
         self.extraTopMenu.setFrameShadow(QFrame.Shadow.Raised)
-        self.gridLayout_11 = QGridLayout(self.extraTopMenu)
-        self.gridLayout_11.setObjectName(u"gridLayout_11")
-        self.extraReloadBtn = QPushButton(self.extraTopMenu)
-        self.extraReloadBtn.setObjectName(u"extraReloadBtn")
-        self.extraReloadBtn.setMinimumSize(QSize(28, 28))
-        self.extraReloadBtn.setMaximumSize(QSize(28, 28))
-        self.extraReloadBtn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.extraReloadBtn.setStyleSheet(u" QPushButton{ background-color:rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }\n"
+        self.gridLayout_6 = QGridLayout(self.extraTopMenu)
+        self.gridLayout_6.setObjectName(u"gridLayout_6")
+        self.deleteTestCase = QPushButton(self.extraTopMenu)
+        self.deleteTestCase.setObjectName(u"deleteTestCase")
+        self.deleteTestCase.setMinimumSize(QSize(28, 28))
+        self.deleteTestCase.setMaximumSize(QSize(28, 28))
+        self.deleteTestCase.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.deleteTestCase.setStyleSheet(u" QPushButton{ background-color:rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }\n"
 " QPushButton:hover { background-color:  #0b6999; border-style: solid; border-radius: 4px; }\n"
 " QPushButton:pressed { background-color:rgb(23, 26, 30); border-style: solid; border-radius: 4px; }")
         icon1 = QIcon()
-        icon1.addFile(u":/Icons/cil-reload.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.extraReloadBtn.setIcon(icon1)
-        self.extraReloadBtn.setIconSize(QSize(20, 20))
+        icon1.addFile(u":/Icons/icon-delete.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.deleteTestCase.setIcon(icon1)
+        self.deleteTestCase.setIconSize(QSize(20, 20))
 
-        self.gridLayout_11.addWidget(self.extraReloadBtn, 0, 0, 1, 1)
+        self.gridLayout_6.addWidget(self.deleteTestCase, 0, 0, 1, 1)
 
         self.horizontalSpacer_2 = QSpacerItem(155, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout_11.addItem(self.horizontalSpacer_2, 0, 1, 1, 1)
+        self.gridLayout_6.addItem(self.horizontalSpacer_2, 0, 1, 1, 1)
 
         self.addTestCase = QPushButton(self.extraTopMenu)
         self.addTestCase.setObjectName(u"addTestCase")
@@ -645,7 +649,7 @@ class Ui_MainWindow(object):
         self.addTestCase.setIcon(icon2)
         self.addTestCase.setIconSize(QSize(20, 20))
 
-        self.gridLayout_11.addWidget(self.addTestCase, 0, 2, 1, 1)
+        self.gridLayout_6.addWidget(self.addTestCase, 0, 2, 1, 1)
 
         self.addall_btn = QPushButton(self.extraTopMenu)
         self.addall_btn.setObjectName(u"addall_btn")
@@ -663,7 +667,7 @@ class Ui_MainWindow(object):
 "    border-radius: 5px; /* Set rounded corners */\n"
 "}")
 
-        self.gridLayout_11.addWidget(self.addall_btn, 0, 3, 1, 1)
+        self.gridLayout_6.addWidget(self.addall_btn, 0, 3, 1, 1)
 
         self.filesList = QListWidget(self.extraTopMenu)
         self.filesList.setObjectName(u"filesList")
@@ -671,7 +675,7 @@ class Ui_MainWindow(object):
         self.filesList.setDragDropMode(QAbstractItemView.DragDropMode.DragOnly)
         self.filesList.setDefaultDropAction(Qt.DropAction.CopyAction)
 
-        self.gridLayout_11.addWidget(self.filesList, 1, 0, 1, 4)
+        self.gridLayout_6.addWidget(self.filesList, 1, 0, 1, 4)
 
 
         self.verticalLayout_12.addWidget(self.extraTopMenu)
@@ -710,9 +714,7 @@ class Ui_MainWindow(object):
         self.leftBox.setFrameShape(QFrame.Shape.NoFrame)
         self.leftBox.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.leftBox)
-        self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.titleRightInfo = QLabel(self.leftBox)
         self.titleRightInfo.setObjectName(u"titleRightInfo")
         sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding)
@@ -725,6 +727,16 @@ class Ui_MainWindow(object):
         self.titleRightInfo.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.horizontalLayout_3.addWidget(self.titleRightInfo)
+
+        self.projectTitle = QLabel(self.leftBox)
+        self.projectTitle.setObjectName(u"projectTitle")
+        sizePolicy2.setHeightForWidth(self.projectTitle.sizePolicy().hasHeightForWidth())
+        self.projectTitle.setSizePolicy(sizePolicy2)
+        self.projectTitle.setMaximumSize(QSize(16777215, 45))
+        self.projectTitle.setFont(font)
+        self.projectTitle.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+
+        self.horizontalLayout_3.addWidget(self.projectTitle)
 
 
         self.horizontalLayout.addWidget(self.leftBox)
@@ -819,71 +831,19 @@ class Ui_MainWindow(object):
         self.gridLayout_7.setObjectName(u"gridLayout_7")
         self.widget_2 = QWidget(self.home)
         self.widget_2.setObjectName(u"widget_2")
-        self.gridLayout_6 = QGridLayout(self.widget_2)
-        self.gridLayout_6.setObjectName(u"gridLayout_6")
-        self.widget_4 = QWidget(self.widget_2)
-        self.widget_4.setObjectName(u"widget_4")
-        self.formLayout = QFormLayout(self.widget_4)
-        self.formLayout.setObjectName(u"formLayout")
-        self.labelHome = QLabel(self.widget_4)
-        self.labelHome.setObjectName(u"labelHome")
-        self.labelHome.setMinimumSize(QSize(0, 0))
-        self.labelHome.setMaximumSize(QSize(100, 16777215))
-
-        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.labelHome)
-
-        self.labelWorkspacePath = QLabel(self.widget_4)
-        self.labelWorkspacePath.setObjectName(u"labelWorkspacePath")
-        sizePolicy1.setHeightForWidth(self.labelWorkspacePath.sizePolicy().hasHeightForWidth())
-        self.labelWorkspacePath.setSizePolicy(sizePolicy1)
-
-        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.labelWorkspacePath)
-
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.formLayout.setItem(0, QFormLayout.SpanningRole, self.verticalSpacer)
-
-
-        self.gridLayout_6.addWidget(self.widget_4, 0, 0, 1, 1)
-
+        self.verticalLayout_9 = QVBoxLayout(self.widget_2)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.homeWidget = QWidget(self.widget_2)
         self.homeWidget.setObjectName(u"homeWidget")
         self.gridLayout_10 = QGridLayout(self.homeWidget)
         self.gridLayout_10.setObjectName(u"gridLayout_10")
-        self.button_openWorkspace = QPushButton(self.homeWidget)
-        self.button_openWorkspace.setObjectName(u"button_openWorkspace")
-        icon5 = QIcon()
-        icon5.addFile(u":/Icons/cil-folder-open.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.button_openWorkspace.setIcon(icon5)
-
-        self.gridLayout_10.addWidget(self.button_openWorkspace, 2, 0, 1, 1)
-
-        self.label_2 = QLabel(self.homeWidget)
-        self.label_2.setObjectName(u"label_2")
-
-        self.gridLayout_10.addWidget(self.label_2, 6, 0, 1, 1)
-
-        self.button_newTestCase = QPushButton(self.homeWidget)
-        self.button_newTestCase.setObjectName(u"button_newTestCase")
-        self.button_newTestCase.setIcon(icon2)
-
-        self.gridLayout_10.addWidget(self.button_newTestCase, 3, 0, 1, 1)
-
         self.button_loadTestCase = QPushButton(self.homeWidget)
         self.button_loadTestCase.setObjectName(u"button_loadTestCase")
-        icon6 = QIcon()
-        icon6.addFile(u":/Icons/cil-file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.button_loadTestCase.setIcon(icon6)
+        icon5 = QIcon()
+        icon5.addFile(u":/Icons/cil-file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.button_loadTestCase.setIcon(icon5)
 
-        self.gridLayout_10.addWidget(self.button_loadTestCase, 4, 0, 1, 1)
-
-        self.button_closeWorkspace = QPushButton(self.homeWidget)
-        self.button_closeWorkspace.setObjectName(u"button_closeWorkspace")
-        icon7 = QIcon()
-        icon7.addFile(u":/Icons/cil-folder.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.button_closeWorkspace.setIcon(icon7)
-
-        self.gridLayout_10.addWidget(self.button_closeWorkspace, 5, 0, 1, 1)
+        self.gridLayout_10.addWidget(self.button_loadTestCase, 5, 0, 1, 1)
 
         self.label_7 = QLabel(self.homeWidget)
         self.label_7.setObjectName(u"label_7")
@@ -894,16 +854,78 @@ class Ui_MainWindow(object):
         font2.setItalic(False)
         self.label_7.setFont(font2)
 
-        self.gridLayout_10.addWidget(self.label_7, 1, 0, 1, 1)
+        self.gridLayout_10.addWidget(self.label_7, 0, 0, 2, 2)
+
+        self.button_newTestCase = QPushButton(self.homeWidget)
+        self.button_newTestCase.setObjectName(u"button_newTestCase")
+        self.button_newTestCase.setIcon(icon2)
+
+        self.gridLayout_10.addWidget(self.button_newTestCase, 4, 0, 1, 1)
+
+        self.button_openWorkspace = QPushButton(self.homeWidget)
+        self.button_openWorkspace.setObjectName(u"button_openWorkspace")
+        icon6 = QIcon()
+        icon6.addFile(u":/Icons/cil-folder-open.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.button_openWorkspace.setIcon(icon6)
+
+        self.gridLayout_10.addWidget(self.button_openWorkspace, 3, 0, 1, 1)
+
+        self.button_closeWorkspace = QPushButton(self.homeWidget)
+        self.button_closeWorkspace.setObjectName(u"button_closeWorkspace")
+        icon7 = QIcon()
+        icon7.addFile(u":/Icons/cil-folder.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.button_closeWorkspace.setIcon(icon7)
+
+        self.gridLayout_10.addWidget(self.button_closeWorkspace, 6, 0, 1, 1)
+
+        self.button_newWorkspace = QPushButton(self.homeWidget)
+        self.button_newWorkspace.setObjectName(u"button_newWorkspace")
+        self.button_newWorkspace.setMaximumSize(QSize(160, 16777215))
+        self.button_newWorkspace.setIcon(icon2)
+
+        self.gridLayout_10.addWidget(self.button_newWorkspace, 2, 0, 1, 1)
 
 
-        self.gridLayout_6.addWidget(self.homeWidget, 1, 0, 1, 1)
+        self.verticalLayout_9.addWidget(self.homeWidget)
 
-        self.list_recents = QListView(self.widget_2)
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_9.addItem(self.verticalSpacer)
+
+        self.recent_widget = QWidget(self.widget_2)
+        self.recent_widget.setObjectName(u"recent_widget")
+        self.recent_widget.setMinimumSize(QSize(0, 800))
+        self.verticalLayout_13 = QVBoxLayout(self.recent_widget)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.label_2 = QLabel(self.recent_widget)
+        self.label_2.setObjectName(u"label_2")
+
+        self.verticalLayout_13.addWidget(self.label_2)
+
+        self.list_recents = QListWidget(self.recent_widget)
         self.list_recents.setObjectName(u"list_recents")
-        self.list_recents.setStyleSheet(u"background: transparent;")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.MinimumExpanding)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.list_recents.sizePolicy().hasHeightForWidth())
+        self.list_recents.setSizePolicy(sizePolicy3)
+        self.list_recents.setMinimumSize(QSize(300, 0))
+        self.list_recents.setMaximumSize(QSize(500, 16777215))
+        self.list_recents.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.list_recents.setStyleSheet(u"background: transparent;\n"
+"border: none;")
+        self.list_recents.setFlow(QListView.Flow.TopToBottom)
+        self.list_recents.setSpacing(9)
+        self.list_recents.setViewMode(QListView.ViewMode.ListMode)
+        self.list_recents.setModelColumn(0)
+        self.list_recents.setUniformItemSizes(True)
+        self.list_recents.setWordWrap(True)
+        self.list_recents.setSelectionRectVisible(False)
 
-        self.gridLayout_6.addWidget(self.list_recents, 2, 0, 1, 1)
+        self.verticalLayout_13.addWidget(self.list_recents)
+
+
+        self.verticalLayout_9.addWidget(self.recent_widget)
 
 
         self.gridLayout_7.addWidget(self.widget_2, 1, 0, 1, 1)
@@ -1299,11 +1321,11 @@ class Ui_MainWindow(object):
         __qtablewidgetitem23 = QTableWidgetItem()
         self.tableWidget.setItem(0, 3, __qtablewidgetitem23)
         self.tableWidget.setObjectName(u"tableWidget")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.tableWidget.sizePolicy().hasHeightForWidth())
-        self.tableWidget.setSizePolicy(sizePolicy3)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.tableWidget.sizePolicy().hasHeightForWidth())
+        self.tableWidget.setSizePolicy(sizePolicy4)
         palette = QPalette()
         brush = QBrush(QColor(191, 227, 254, 255))
         brush.setStyle(Qt.SolidPattern)
@@ -1408,143 +1430,271 @@ class Ui_MainWindow(object):
 "    opacity: 0.6;\n"
 "}\n"
 "")
-        self.verticalLayout_9 = QVBoxLayout(self.widget_3)
-        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
-        self.groupBox_3 = QGroupBox(self.widget_3)
-        self.groupBox_3.setObjectName(u"groupBox_3")
-        self.groupBox_3.setStyleSheet(u"QSpinBox {\n"
-"    background-color: #1c1c1c;\n"
-"    border: 1px solid #1D9BF0;\n"
-"    border-radius: 4px;\n"
-"    padding: 2px;\n"
+        self.gridLayout_14 = QGridLayout(self.widget_3)
+        self.gridLayout_14.setObjectName(u"gridLayout_14")
+        self.bgApp_2 = QFrame(self.widget_3)
+        self.bgApp_2.setObjectName(u"bgApp_2")
+        self.bgApp_2.setStyleSheet(u"QLineEdit{\n"
+"background-color: rgb(33, 37, 43);\n"
+"}\n"
+"QLineEdit::disabled{\n"
+"background-color: rgb(52, 59, 72);\n"
+"color: grey;\n"
+"}\n"
+"QPushButton {\n"
+"    background-color:  rgb(33, 37, 43);\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #0b6999; /* Hover background color */\n"
+"    color: rgb(191, 227, 254);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color:rgb(6, 7, 9) ; /* Darker blue for pressed state */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: rgb(52, 59, 72);\n"
+"    \n"
+"    color: grey;\n"
+"    opacity: 0.6;\n"
 "}")
-        self.gridLayout_16 = QGridLayout(self.groupBox_3)
-        self.gridLayout_16.setObjectName(u"gridLayout_16")
-        self.title_ConnSettings = QLabel(self.groupBox_3)
-        self.title_ConnSettings.setObjectName(u"title_ConnSettings")
-        self.title_ConnSettings.setMaximumSize(QSize(16777215, 50))
-        font5 = QFont()
-        font5.setFamilies([u"13 Segoe UI"])
-        font5.setPointSize(15)
-        font5.setBold(False)
-        font5.setItalic(False)
-        self.title_ConnSettings.setFont(font5)
-        self.title_ConnSettings.setStyleSheet(u"font: 15pt Bold \"Segoe UI\";\n"
-"color: #0d597f;")
-
-        self.gridLayout_16.addWidget(self.title_ConnSettings, 0, 0, 1, 2)
-
-        self.lbl_connstatus = QLabel(self.groupBox_3)
-        self.lbl_connstatus.setObjectName(u"lbl_connstatus")
-
-        self.gridLayout_16.addWidget(self.lbl_connstatus, 1, 0, 1, 1)
-
-        self.txt_connectionstatus = QLabel(self.groupBox_3)
-        self.txt_connectionstatus.setObjectName(u"txt_connectionstatus")
-
-        self.gridLayout_16.addWidget(self.txt_connectionstatus, 1, 1, 1, 1)
-
-        self.lbl_lastConnTime = QLabel(self.groupBox_3)
-        self.lbl_lastConnTime.setObjectName(u"lbl_lastConnTime")
-
-        self.gridLayout_16.addWidget(self.lbl_lastConnTime, 2, 0, 1, 1)
-
-        self.txt_lastConnectionTime = QLabel(self.groupBox_3)
-        self.txt_lastConnectionTime.setObjectName(u"txt_lastConnectionTime")
-
-        self.gridLayout_16.addWidget(self.txt_lastConnectionTime, 2, 1, 1, 1)
-
-        self.connectPOS = QPushButton(self.groupBox_3)
-        self.connectPOS.setObjectName(u"connectPOS")
-        self.connectPOS.setMinimumSize(QSize(100, 0))
-        self.connectPOS.setMaximumSize(QSize(150, 16777215))
-
-        self.gridLayout_16.addWidget(self.connectPOS, 3, 0, 1, 1)
-
-        self.disconnectPOS = QPushButton(self.groupBox_3)
-        self.disconnectPOS.setObjectName(u"disconnectPOS")
-        self.disconnectPOS.setMinimumSize(QSize(100, 0))
-        self.disconnectPOS.setMaximumSize(QSize(150, 16777215))
-
-        self.gridLayout_16.addWidget(self.disconnectPOS, 3, 1, 1, 1)
-
-        self.horizontalSpacer_4 = QSpacerItem(332, 38, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_16.addItem(self.horizontalSpacer_4, 3, 2, 1, 1)
-
-
-        self.verticalLayout_9.addWidget(self.groupBox_3)
-
-        self.groupBox_2 = QGroupBox(self.widget_3)
-        self.groupBox_2.setObjectName(u"groupBox_2")
-        self.groupBox_2.setStyleSheet(u"QSpinBox {\n"
-"    background-color: #1c1c1c;\n"
-"    border: 1px solid #1D9BF0;\n"
-"    border-radius: 4px;\n"
-"    padding: 2px;\n"
-"}")
-        self.gridLayout_12 = QGridLayout(self.groupBox_2)
+        self.bgApp_2.setFrameShape(QFrame.Shape.StyledPanel)
+        self.bgApp_2.setFrameShadow(QFrame.Shadow.Raised)
+        self.gridLayout_12 = QGridLayout(self.bgApp_2)
         self.gridLayout_12.setObjectName(u"gridLayout_12")
-        self.label_18 = QLabel(self.groupBox_2)
-        self.label_18.setObjectName(u"label_18")
+        self.btn_findPath3 = QPushButton(self.bgApp_2)
+        self.btn_findPath3.setObjectName(u"btn_findPath3")
+        self.btn_findPath3.setMinimumSize(QSize(150, 30))
+        font5 = QFont()
+        font5.setFamilies([u"Segoe UI"])
+        font5.setBold(True)
+        font5.setItalic(False)
+        self.btn_findPath3.setFont(font5)
+        self.btn_findPath3.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.btn_findPath3.setIcon(icon6)
 
-        self.gridLayout_12.addWidget(self.label_18, 1, 0, 1, 1)
+        self.gridLayout_12.addWidget(self.btn_findPath3, 4, 3, 1, 1)
 
-        self.spinBox = QSpinBox(self.groupBox_2)
-        self.spinBox.setObjectName(u"spinBox")
-        self.spinBox.setStyleSheet(u"")
-        self.spinBox.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.PlusMinus)
-        self.spinBox.setMaximum(1000)
-        self.spinBox.setSingleStep(100)
+        self.lbl_projectlocation = QLabel(self.bgApp_2)
+        self.lbl_projectlocation.setObjectName(u"lbl_projectlocation")
+        self.lbl_projectlocation.setLineWidth(1)
+        self.lbl_projectlocation.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout_12.addWidget(self.spinBox, 1, 1, 1, 1)
+        self.gridLayout_12.addWidget(self.lbl_projectlocation, 1, 0, 1, 1)
 
-        self.label_16 = QLabel(self.groupBox_2)
-        self.label_16.setObjectName(u"label_16")
+        self.btn_findPath1 = QPushButton(self.bgApp_2)
+        self.btn_findPath1.setObjectName(u"btn_findPath1")
+        self.btn_findPath1.setEnabled(True)
+        self.btn_findPath1.setMinimumSize(QSize(150, 30))
+        self.btn_findPath1.setFont(font5)
+        self.btn_findPath1.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.btn_findPath1.setStyleSheet(u"")
+        self.btn_findPath1.setIcon(icon6)
 
-        self.gridLayout_12.addWidget(self.label_16, 2, 2, 1, 1)
+        self.gridLayout_12.addWidget(self.btn_findPath1, 1, 3, 1, 1)
 
-        self.label_17 = QLabel(self.groupBox_2)
-        self.label_17.setObjectName(u"label_17")
-        self.label_17.setMaximumSize(QSize(16777215, 50))
-        self.label_17.setFont(font5)
-        self.label_17.setStyleSheet(u"font: 15pt Bold \"Segoe UI\";\n"
-"color: #0d597f;")
+        self.btn_findPath2 = QPushButton(self.bgApp_2)
+        self.btn_findPath2.setObjectName(u"btn_findPath2")
+        self.btn_findPath2.setMinimumSize(QSize(150, 30))
+        self.btn_findPath2.setFont(font5)
+        self.btn_findPath2.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.btn_findPath2.setStyleSheet(u"")
+        self.btn_findPath2.setIcon(icon6)
 
-        self.gridLayout_12.addWidget(self.label_17, 0, 0, 1, 3)
+        self.gridLayout_12.addWidget(self.btn_findPath2, 2, 3, 1, 1)
 
-        self.saveTimer = QPushButton(self.groupBox_2)
-        self.saveTimer.setObjectName(u"saveTimer")
-        self.saveTimer.setMaximumSize(QSize(150, 16777215))
+        self.btn_findPath4 = QPushButton(self.bgApp_2)
+        self.btn_findPath4.setObjectName(u"btn_findPath4")
+        self.btn_findPath4.setMinimumSize(QSize(150, 30))
+        self.btn_findPath4.setFont(font5)
+        self.btn_findPath4.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.btn_findPath4.setIcon(icon6)
 
-        self.gridLayout_12.addWidget(self.saveTimer, 3, 0, 1, 1)
+        self.gridLayout_12.addWidget(self.btn_findPath4, 5, 3, 1, 1)
 
-        self.label_15 = QLabel(self.groupBox_2)
-        self.label_15.setObjectName(u"label_15")
+        self.lbl_cmdLineParam = QLabel(self.bgApp_2)
+        self.lbl_cmdLineParam.setObjectName(u"lbl_cmdLineParam")
+        self.lbl_cmdLineParam.setLineWidth(1)
+        self.lbl_cmdLineParam.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout_12.addWidget(self.label_15, 2, 0, 1, 1)
+        self.gridLayout_12.addWidget(self.lbl_cmdLineParam, 3, 0, 1, 1)
 
-        self.spinBox_2 = QSpinBox(self.groupBox_2)
-        self.spinBox_2.setObjectName(u"spinBox_2")
-        self.spinBox_2.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.PlusMinus)
-        self.spinBox_2.setMaximum(30)
+        self.txt_cmdLineParams = QLineEdit(self.bgApp_2)
+        self.txt_cmdLineParams.setObjectName(u"txt_cmdLineParams")
+        self.txt_cmdLineParams.setMinimumSize(QSize(0, 30))
+        self.txt_cmdLineParams.setStyleSheet(u"background-color: rgb(33, 37, 43);")
 
-        self.gridLayout_12.addWidget(self.spinBox_2, 2, 1, 1, 1)
+        self.gridLayout_12.addWidget(self.txt_cmdLineParams, 3, 1, 1, 3)
 
-        self.label_10 = QLabel(self.groupBox_2)
-        self.label_10.setObjectName(u"label_10")
+        self.lbl_screenshotSettings = QLabel(self.bgApp_2)
+        self.lbl_screenshotSettings.setObjectName(u"lbl_screenshotSettings")
 
-        self.gridLayout_12.addWidget(self.label_10, 1, 2, 1, 1)
+        self.gridLayout_12.addWidget(self.lbl_screenshotSettings, 7, 0, 1, 1)
+
+        self.txt_screenshotTimer = QSpinBox(self.bgApp_2)
+        self.txt_screenshotTimer.setObjectName(u"txt_screenshotTimer")
+        self.txt_screenshotTimer.setStyleSheet(u"")
+        self.txt_screenshotTimer.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.PlusMinus)
+        self.txt_screenshotTimer.setMaximum(1000)
+        self.txt_screenshotTimer.setSingleStep(100)
+
+        self.gridLayout_12.addWidget(self.txt_screenshotTimer, 8, 1, 1, 1)
+
+        self.txt_projectName = QLineEdit(self.bgApp_2)
+        self.txt_projectName.setObjectName(u"txt_projectName")
+        self.txt_projectName.setEnabled(True)
+        self.txt_projectName.setMinimumSize(QSize(300, 30))
+
+        self.gridLayout_12.addWidget(self.txt_projectName, 0, 1, 1, 2)
+
+        self.errorMessage = QLabel(self.bgApp_2)
+        self.errorMessage.setObjectName(u"errorMessage")
+
+        self.gridLayout_12.addWidget(self.errorMessage, 10, 0, 1, 3)
+
+        self.cb_autoload = QCheckBox(self.bgApp_2)
+        self.cb_autoload.setObjectName(u"cb_autoload")
+        self.cb_autoload.setAutoFillBackground(False)
+        self.cb_autoload.setStyleSheet(u"")
+
+        self.gridLayout_12.addWidget(self.cb_autoload, 9, 0, 1, 1)
+
+        self.cb_autoconnect = QCheckBox(self.bgApp_2)
+        self.cb_autoconnect.setObjectName(u"cb_autoconnect")
+        self.cb_autoconnect.setAutoFillBackground(False)
+        self.cb_autoconnect.setStyleSheet(u"")
+
+        self.gridLayout_12.addWidget(self.cb_autoconnect, 7, 1, 1, 1)
+
+        self.lbl_reportsPath = QLabel(self.bgApp_2)
+        self.lbl_reportsPath.setObjectName(u"lbl_reportsPath")
+        self.lbl_reportsPath.setLineWidth(1)
+        self.lbl_reportsPath.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout_12.addWidget(self.lbl_reportsPath, 4, 0, 1, 1)
+
+        self.btn_findPath5 = QPushButton(self.bgApp_2)
+        self.btn_findPath5.setObjectName(u"btn_findPath5")
+        self.btn_findPath5.setEnabled(True)
+        self.btn_findPath5.setMinimumSize(QSize(150, 30))
+        self.btn_findPath5.setFont(font5)
+        self.btn_findPath5.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.btn_findPath5.setIcon(icon6)
+
+        self.gridLayout_12.addWidget(self.btn_findPath5, 6, 3, 1, 1)
+
+        self.txt_projectLocationPath = QLineEdit(self.bgApp_2)
+        self.txt_projectLocationPath.setObjectName(u"txt_projectLocationPath")
+        self.txt_projectLocationPath.setMinimumSize(QSize(400, 30))
+        self.txt_projectLocationPath.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_12.addWidget(self.txt_projectLocationPath, 1, 1, 1, 2)
+
+        self.lbl_cleanupscriptPath = QLabel(self.bgApp_2)
+        self.lbl_cleanupscriptPath.setObjectName(u"lbl_cleanupscriptPath")
+        self.lbl_cleanupscriptPath.setLineWidth(1)
+        self.lbl_cleanupscriptPath.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout_12.addWidget(self.lbl_cleanupscriptPath, 6, 0, 1, 1)
+
+        self.txt_targetAppPath = QLineEdit(self.bgApp_2)
+        self.txt_targetAppPath.setObjectName(u"txt_targetAppPath")
+        self.txt_targetAppPath.setMinimumSize(QSize(0, 30))
+        self.txt_targetAppPath.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_12.addWidget(self.txt_targetAppPath, 2, 1, 1, 2)
+
+        self.txt_setupScriptPath = QLineEdit(self.bgApp_2)
+        self.txt_setupScriptPath.setObjectName(u"txt_setupScriptPath")
+        self.txt_setupScriptPath.setMinimumSize(QSize(0, 30))
+        self.txt_setupScriptPath.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_12.addWidget(self.txt_setupScriptPath, 5, 1, 1, 2)
+
+        self.lbl_tarAppPath = QLabel(self.bgApp_2)
+        self.lbl_tarAppPath.setObjectName(u"lbl_tarAppPath")
+        self.lbl_tarAppPath.setLineWidth(1)
+        self.lbl_tarAppPath.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout_12.addWidget(self.lbl_tarAppPath, 2, 0, 1, 1)
+
+        self.txt_cleanupScriptPath = QLineEdit(self.bgApp_2)
+        self.txt_cleanupScriptPath.setObjectName(u"txt_cleanupScriptPath")
+        self.txt_cleanupScriptPath.setMinimumSize(QSize(0, 30))
+        self.txt_cleanupScriptPath.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_12.addWidget(self.txt_cleanupScriptPath, 6, 1, 1, 2)
+
+        self.lbl_testCaseId = QLabel(self.bgApp_2)
+        self.lbl_testCaseId.setObjectName(u"lbl_testCaseId")
+        self.lbl_testCaseId.setLineWidth(1)
+        self.lbl_testCaseId.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout_12.addWidget(self.lbl_testCaseId, 0, 0, 1, 1)
+
+        self.txt_reportsPath = QLineEdit(self.bgApp_2)
+        self.txt_reportsPath.setObjectName(u"txt_reportsPath")
+        self.txt_reportsPath.setMinimumSize(QSize(0, 30))
+        self.txt_reportsPath.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_12.addWidget(self.txt_reportsPath, 4, 1, 1, 2)
+
+        self.lbl_setupscriptPath = QLabel(self.bgApp_2)
+        self.lbl_setupscriptPath.setObjectName(u"lbl_setupscriptPath")
+        self.lbl_setupscriptPath.setLineWidth(1)
+        self.lbl_setupscriptPath.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout_12.addWidget(self.lbl_setupscriptPath, 5, 0, 1, 1)
+
+        self.lbl_screenshotTimer = QLabel(self.bgApp_2)
+        self.lbl_screenshotTimer.setObjectName(u"lbl_screenshotTimer")
+
+        self.gridLayout_12.addWidget(self.lbl_screenshotTimer, 8, 0, 1, 1)
+
+        self.lbl_ms = QLabel(self.bgApp_2)
+        self.lbl_ms.setObjectName(u"lbl_ms")
+
+        self.gridLayout_12.addWidget(self.lbl_ms, 8, 2, 1, 1)
+
+        self.btn_save_settings = QPushButton(self.bgApp_2)
+        self.btn_save_settings.setObjectName(u"btn_save_settings")
+        self.btn_save_settings.setStyleSheet(u"QPushButton {\n"
+"    background-color: rgb(191, 227, 254); /* Default background color */\n"
+"    color: #05151f; /* Default text color */\n"
+"    border: none;\n"
+"    border-radius: 12px; /* Rounded corners */\n"
+"    padding: 5px 10px; /* More padding for a modern look */\n"
+"    font-size: 14px;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #0b6999; /* Hover background color */\n"
+"    color: rgb(191, 227, 254);\n"
+"    border-radius: 12px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #094f73; /* Darker blue for pressed state */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #c6d9eb; /* Lighter greyed-out background */\n"
+"    color: #7aa9d6; /* Dimmed text color */\n"
+"    border: none;\n"
+"    opacity: 0.6;\n"
+"}")
+
+        self.gridLayout_12.addWidget(self.btn_save_settings, 10, 3, 1, 1)
 
 
-        self.verticalLayout_9.addWidget(self.groupBox_2)
+        self.gridLayout_14.addWidget(self.bgApp_2, 0, 0, 1, 1)
 
 
         self.gridLayout_8.addWidget(self.widget_3, 2, 1, 1, 1)
-
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_8.addItem(self.horizontalSpacer, 2, 2, 1, 1)
 
         self.label_13 = QLabel(self.settings)
         self.label_13.setObjectName(u"label_13")
@@ -1558,7 +1708,11 @@ class Ui_MainWindow(object):
         self.label_13.setStyleSheet(u"font: 20pt Bold \"Segoe UI\";")
         self.label_13.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.gridLayout_8.addWidget(self.label_13, 1, 1, 1, 2)
+        self.gridLayout_8.addWidget(self.label_13, 1, 1, 1, 1)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_8.addItem(self.horizontalSpacer, 1, 2, 2, 1)
 
         self.stackedWidget.addWidget(self.settings)
         self.recorder = QWidget()
@@ -1568,7 +1722,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.initialFrame = QFrame(self.recorder)
         self.initialFrame.setObjectName(u"initialFrame")
-        self.initialFrame.setMaximumSize(QSize(16777215, 0))
         self.initialFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.initialFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_7 = QHBoxLayout(self.initialFrame)
@@ -1674,16 +1827,18 @@ class Ui_MainWindow(object):
 
         self.btn_reset = QPushButton(self.recorder_restore_widget)
         self.btn_reset.setObjectName(u"btn_reset")
-        self.btn_reset.setIcon(icon1)
+        icon12 = QIcon()
+        icon12.addFile(u":/Icons/cil-reload.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.btn_reset.setIcon(icon12)
         self.btn_reset.setIconSize(QSize(50, 50))
 
         self.gridLayout_13.addWidget(self.btn_reset, 2, 0, 1, 1)
 
         self.btn_start = QPushButton(self.recorder_restore_widget)
         self.btn_start.setObjectName(u"btn_start")
-        icon12 = QIcon()
-        icon12.addFile(u":/Icons/record_start.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.btn_start.setIcon(icon12)
+        icon13 = QIcon()
+        icon13.addFile(u":/Icons/record_start.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.btn_start.setIcon(icon13)
         self.btn_start.setIconSize(QSize(100, 100))
 
         self.gridLayout_13.addWidget(self.btn_start, 1, 1, 1, 1)
@@ -1775,9 +1930,9 @@ class Ui_MainWindow(object):
         self.scrollAreaScreenshots.setWidgetResizable(True)
         self.scrollAreaWidgetContents_4 = QWidget()
         self.scrollAreaWidgetContents_4.setObjectName(u"scrollAreaWidgetContents_4")
-        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 1003, 491))
-        sizePolicy3.setHeightForWidth(self.scrollAreaWidgetContents_4.sizePolicy().hasHeightForWidth())
-        self.scrollAreaWidgetContents_4.setSizePolicy(sizePolicy3)
+        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 52, 28))
+        sizePolicy4.setHeightForWidth(self.scrollAreaWidgetContents_4.sizePolicy().hasHeightForWidth())
+        self.scrollAreaWidgetContents_4.setSizePolicy(sizePolicy4)
         self.gridLayout_15 = QGridLayout(self.scrollAreaWidgetContents_4)
         self.gridLayout_15.setObjectName(u"gridLayout_15")
         self.widget = QWidget(self.scrollAreaWidgetContents_4)
@@ -1804,11 +1959,6 @@ class Ui_MainWindow(object):
         self.reports.setStyleSheet(u"background: transparent;")
         self.gridLayout_3 = QGridLayout(self.reports)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.label_3 = QLabel(self.reports)
-        self.label_3.setObjectName(u"label_3")
-
-        self.gridLayout_3.addWidget(self.label_3, 0, 0, 1, 1)
-
         self.reportsTable = QTableWidget(self.reports)
         if (self.reportsTable.columnCount() < 3):
             self.reportsTable.setColumnCount(3)
@@ -1830,8 +1980,8 @@ class Ui_MainWindow(object):
         __qtablewidgetitem30 = QTableWidgetItem()
         self.reportsTable.setItem(0, 2, __qtablewidgetitem30)
         self.reportsTable.setObjectName(u"reportsTable")
-        sizePolicy3.setHeightForWidth(self.reportsTable.sizePolicy().hasHeightForWidth())
-        self.reportsTable.setSizePolicy(sizePolicy3)
+        sizePolicy4.setHeightForWidth(self.reportsTable.sizePolicy().hasHeightForWidth())
+        self.reportsTable.setSizePolicy(sizePolicy4)
         self.reportsTable.setMinimumSize(QSize(600, 660))
         palette1 = QPalette()
         palette1.setBrush(QPalette.Active, QPalette.WindowText, brush)
@@ -1904,9 +2054,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.reportsTable, 1, 0, 1, 1)
 
-        self.horizontalSpacer_3 = QSpacerItem(416, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.label_3 = QLabel(self.reports)
+        self.label_3.setObjectName(u"label_3")
 
-        self.gridLayout_3.addItem(self.horizontalSpacer_3, 1, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.label_3, 0, 0, 1, 1)
 
         self.stackedWidget.addWidget(self.reports)
         self.test_suite = QWidget()
@@ -1916,35 +2067,35 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.frame = QFrame(self.test_suite)
         self.frame.setObjectName(u"frame")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
-        self.frame.setSizePolicy(sizePolicy4)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
+        self.frame.setSizePolicy(sizePolicy5)
         self.frame.setMaximumSize(QSize(850, 16777215))
-        self.frame.setStyleSheet(u"QPushButton {\n"
-"    background-color: rgb(191, 227, 254); /* Default background color */\n"
-"    color: #05151f; /* Default text color */\n"
-"    border: none;\n"
+        self.frame.setStyleSheet(u"\n"
+"QPushButton {\n"
+"    background-color:  rgb(33, 37, 43);\n"
+"    color:#bfe3fe; /* blue-charcoal 200 - light text on dark */\n"
+"border: none;\n"
 "    border-radius: 12px; /* Rounded corners */\n"
 "    padding: 5px 10px; /* More padding for a modern look */\n"
 "    font-size: 14px;\n"
-"    font-weight: bold;\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
 "    background-color: #0b6999; /* Hover background color */\n"
 "    color: rgb(191, 227, 254);\n"
-"    border-radius: 12px;\n"
+" border-radius: 12px;\n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
-"    background-color: #094f73; /* Darker blue for pressed state */\n"
+"    background-color:rgb(6, 7, 9) ; /* Darker blue for pressed state */\n"
 "}\n"
 "\n"
 "QPushButton:disabled {\n"
-"    background-color: #c6d9eb; /* Lighter greyed-out background */\n"
-"    color: #7aa9d6; /* Dimmed text color */\n"
+"    background-color: rgb(52, 59, 72);\n"
+"    color: grey;\n"
 "    border: none;\n"
 "    opacity: 0.6;\n"
 "}")
@@ -1960,37 +2111,39 @@ class Ui_MainWindow(object):
         brush9 = QBrush(QColor(5, 21, 31, 255))
         brush9.setStyle(Qt.SolidPattern)
         palette2.setBrush(QPalette.Active, QPalette.WindowText, brush9)
-        palette2.setBrush(QPalette.Active, QPalette.Button, brush)
+        brush10 = QBrush(QColor(33, 37, 43, 255))
+        brush10.setStyle(Qt.SolidPattern)
+        palette2.setBrush(QPalette.Active, QPalette.Button, brush10)
         palette2.setBrush(QPalette.Active, QPalette.Text, brush9)
         palette2.setBrush(QPalette.Active, QPalette.ButtonText, brush9)
-        palette2.setBrush(QPalette.Active, QPalette.Base, brush)
-        palette2.setBrush(QPalette.Active, QPalette.Window, brush)
-        brush10 = QBrush(QColor(5, 21, 31, 128))
-        brush10.setStyle(Qt.SolidPattern)
+        palette2.setBrush(QPalette.Active, QPalette.Base, brush10)
+        palette2.setBrush(QPalette.Active, QPalette.Window, brush10)
+        brush11 = QBrush(QColor(5, 21, 31, 128))
+        brush11.setStyle(Qt.SolidPattern)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette2.setBrush(QPalette.Active, QPalette.PlaceholderText, brush10)
+        palette2.setBrush(QPalette.Active, QPalette.PlaceholderText, brush11)
 #endif
         palette2.setBrush(QPalette.Inactive, QPalette.WindowText, brush9)
-        palette2.setBrush(QPalette.Inactive, QPalette.Button, brush)
+        palette2.setBrush(QPalette.Inactive, QPalette.Button, brush10)
         palette2.setBrush(QPalette.Inactive, QPalette.Text, brush9)
         palette2.setBrush(QPalette.Inactive, QPalette.ButtonText, brush9)
-        palette2.setBrush(QPalette.Inactive, QPalette.Base, brush)
-        palette2.setBrush(QPalette.Inactive, QPalette.Window, brush)
+        palette2.setBrush(QPalette.Inactive, QPalette.Base, brush10)
+        palette2.setBrush(QPalette.Inactive, QPalette.Window, brush10)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette2.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush10)
+        palette2.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush11)
 #endif
         palette2.setBrush(QPalette.Disabled, QPalette.WindowText, brush9)
-        brush11 = QBrush(QColor(198, 217, 235, 255))
-        brush11.setStyle(Qt.SolidPattern)
-        palette2.setBrush(QPalette.Disabled, QPalette.Button, brush11)
-        palette2.setBrush(QPalette.Disabled, QPalette.Text, brush9)
-        brush12 = QBrush(QColor(0, 0, 0, 92))
+        brush12 = QBrush(QColor(52, 59, 72, 255))
         brush12.setStyle(Qt.SolidPattern)
-        palette2.setBrush(QPalette.Disabled, QPalette.ButtonText, brush12)
-        palette2.setBrush(QPalette.Disabled, QPalette.Base, brush11)
-        palette2.setBrush(QPalette.Disabled, QPalette.Window, brush11)
+        palette2.setBrush(QPalette.Disabled, QPalette.Button, brush12)
+        palette2.setBrush(QPalette.Disabled, QPalette.Text, brush9)
+        brush13 = QBrush(QColor(0, 0, 0, 92))
+        brush13.setStyle(Qt.SolidPattern)
+        palette2.setBrush(QPalette.Disabled, QPalette.ButtonText, brush13)
+        palette2.setBrush(QPalette.Disabled, QPalette.Base, brush12)
+        palette2.setBrush(QPalette.Disabled, QPalette.Window, brush12)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette2.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush10)
+        palette2.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush11)
 #endif
         self.startTesting.setPalette(palette2)
         self.startTesting.setStyleSheet(u"")
@@ -2002,9 +2155,9 @@ class Ui_MainWindow(object):
         self.stopTesting.setObjectName(u"stopTesting")
         self.stopTesting.setEnabled(True)
         self.stopTesting.setMaximumSize(QSize(150, 16777215))
-        icon13 = QIcon()
-        icon13.addFile(u":/Icons/cil-media-stop.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.stopTesting.setIcon(icon13)
+        icon14 = QIcon()
+        icon14.addFile(u":/Icons/cil-media-stop.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.stopTesting.setIcon(icon14)
 
         self.horizontalLayout_6.addWidget(self.stopTesting)
 
@@ -2012,7 +2165,7 @@ class Ui_MainWindow(object):
         self.rerunTesting.setObjectName(u"rerunTesting")
         self.rerunTesting.setEnabled(True)
         self.rerunTesting.setMaximumSize(QSize(150, 16777215))
-        self.rerunTesting.setIcon(icon1)
+        self.rerunTesting.setIcon(icon12)
 
         self.horizontalLayout_6.addWidget(self.rerunTesting)
 
@@ -2082,16 +2235,16 @@ class Ui_MainWindow(object):
         __qtablewidgetitem47 = QTableWidgetItem()
         self.testSuiteTable.setItem(0, 7, __qtablewidgetitem47)
         self.testSuiteTable.setObjectName(u"testSuiteTable")
-        sizePolicy3.setHeightForWidth(self.testSuiteTable.sizePolicy().hasHeightForWidth())
-        self.testSuiteTable.setSizePolicy(sizePolicy3)
+        sizePolicy4.setHeightForWidth(self.testSuiteTable.sizePolicy().hasHeightForWidth())
+        self.testSuiteTable.setSizePolicy(sizePolicy4)
         palette3 = QPalette()
         palette3.setBrush(QPalette.Active, QPalette.WindowText, brush)
         palette3.setBrush(QPalette.Active, QPalette.Button, brush1)
         palette3.setBrush(QPalette.Active, QPalette.Text, brush)
         palette3.setBrush(QPalette.Active, QPalette.ButtonText, brush)
-        brush13 = QBrush(QColor(0, 0, 0, 255))
-        brush13.setStyle(Qt.NoBrush)
-        palette3.setBrush(QPalette.Active, QPalette.Base, brush13)
+        brush14 = QBrush(QColor(0, 0, 0, 255))
+        brush14.setStyle(Qt.NoBrush)
+        palette3.setBrush(QPalette.Active, QPalette.Base, brush14)
         palette3.setBrush(QPalette.Active, QPalette.Window, brush1)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette3.setBrush(QPalette.Active, QPalette.PlaceholderText, brush3)
@@ -2100,9 +2253,9 @@ class Ui_MainWindow(object):
         palette3.setBrush(QPalette.Inactive, QPalette.Button, brush1)
         palette3.setBrush(QPalette.Inactive, QPalette.Text, brush)
         palette3.setBrush(QPalette.Inactive, QPalette.ButtonText, brush)
-        brush14 = QBrush(QColor(0, 0, 0, 255))
-        brush14.setStyle(Qt.NoBrush)
-        palette3.setBrush(QPalette.Inactive, QPalette.Base, brush14)
+        brush15 = QBrush(QColor(0, 0, 0, 255))
+        brush15.setStyle(Qt.NoBrush)
+        palette3.setBrush(QPalette.Inactive, QPalette.Base, brush15)
         palette3.setBrush(QPalette.Inactive, QPalette.Window, brush1)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette3.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush3)
@@ -2111,9 +2264,9 @@ class Ui_MainWindow(object):
         palette3.setBrush(QPalette.Disabled, QPalette.Button, brush1)
         palette3.setBrush(QPalette.Disabled, QPalette.Text, brush)
         palette3.setBrush(QPalette.Disabled, QPalette.ButtonText, brush)
-        brush15 = QBrush(QColor(0, 0, 0, 255))
-        brush15.setStyle(Qt.NoBrush)
-        palette3.setBrush(QPalette.Disabled, QPalette.Base, brush15)
+        brush16 = QBrush(QColor(0, 0, 0, 255))
+        brush16.setStyle(Qt.NoBrush)
+        palette3.setBrush(QPalette.Disabled, QPalette.Base, brush16)
         palette3.setBrush(QPalette.Disabled, QPalette.Window, brush1)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette3.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush3)
@@ -2190,8 +2343,22 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_5.addWidget(self.label_message)
 
+        self.lbl_connection_status = QLabel(self.bottomBar)
+        self.lbl_connection_status.setObjectName(u"lbl_connection_status")
+        self.lbl_connection_status.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.horizontalLayout_5.addWidget(self.lbl_connection_status)
+
+        self.line = QFrame(self.bottomBar)
+        self.line.setObjectName(u"line")
+        self.line.setFrameShape(QFrame.Shape.VLine)
+        self.line.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.horizontalLayout_5.addWidget(self.line)
+
         self.version = QLabel(self.bottomBar)
         self.version.setObjectName(u"version")
+        self.version.setMaximumSize(QSize(80, 16777215))
         self.version.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.horizontalLayout_5.addWidget(self.version)
@@ -2221,7 +2388,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(5)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -2243,9 +2410,9 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.extraCloseColumnBtn.setText("")
 #if QT_CONFIG(tooltip)
-        self.extraReloadBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Reload", None))
+        self.deleteTestCase.setToolTip(QCoreApplication.translate("MainWindow", u"Delete selected test case", None))
 #endif // QT_CONFIG(tooltip)
-        self.extraReloadBtn.setText("")
+        self.deleteTestCase.setText("")
 #if QT_CONFIG(tooltip)
         self.addTestCase.setToolTip(QCoreApplication.translate("MainWindow", u"Add selected case", None))
 #endif // QT_CONFIG(tooltip)
@@ -2255,6 +2422,7 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.addall_btn.setText(QCoreApplication.translate("MainWindow", u"Add All", None))
         self.titleRightInfo.setText(QCoreApplication.translate("MainWindow", u"Automation Testing", None))
+        self.projectTitle.setText("")
 #if QT_CONFIG(tooltip)
         self.minimizeAppBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Minimize", None))
 #endif // QT_CONFIG(tooltip)
@@ -2267,14 +2435,13 @@ class Ui_MainWindow(object):
         self.closeAppBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Close", None))
 #endif // QT_CONFIG(tooltip)
         self.closeAppBtn.setText("")
-        self.labelHome.setText(QCoreApplication.translate("MainWindow", u"Workspace:", None))
-        self.labelWorkspacePath.setText(QCoreApplication.translate("MainWindow", u"workspacepathcd", None))
-        self.button_openWorkspace.setText(QCoreApplication.translate("MainWindow", u"Open Workspace", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Recents", None))
-        self.button_newTestCase.setText(QCoreApplication.translate("MainWindow", u"New Test Case", None))
         self.button_loadTestCase.setText(QCoreApplication.translate("MainWindow", u"Load Test case", None))
-        self.button_closeWorkspace.setText(QCoreApplication.translate("MainWindow", u"Close Workspace", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Start", None))
+        self.button_newTestCase.setText(QCoreApplication.translate("MainWindow", u"New Test Case", None))
+        self.button_openWorkspace.setText(QCoreApplication.translate("MainWindow", u"Open Workspace", None))
+        self.button_closeWorkspace.setText(QCoreApplication.translate("MainWindow", u"Close Workspace", None))
+        self.button_newWorkspace.setText(QCoreApplication.translate("MainWindow", u"New Workspace", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Recents", None))
         self.label_testcasedesc.setText(QCoreApplication.translate("MainWindow", u"Test Case Description", None))
         self.testcasedesc.setText("")
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Test Case Editor", None))
@@ -2354,34 +2521,43 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem23.setText(QCoreApplication.translate("MainWindow", u"Line", None));
         self.tableWidget.setSortingEnabled(__sortingEnabled)
 
-        self.groupBox_3.setTitle("")
-        self.title_ConnSettings.setText(QCoreApplication.translate("MainWindow", u"Connection Settings", None))
-        self.lbl_connstatus.setText(QCoreApplication.translate("MainWindow", u"Connections Status:", None))
-        self.txt_connectionstatus.setText(QCoreApplication.translate("MainWindow", u"Connected", None))
-        self.lbl_lastConnTime.setText(QCoreApplication.translate("MainWindow", u"Last Connected:", None))
-        self.txt_lastConnectionTime.setText(QCoreApplication.translate("MainWindow", u"4: 03 PM", None))
+        self.btn_findPath3.setText(QCoreApplication.translate("MainWindow", u"Browse", None))
+        self.lbl_projectlocation.setText(QCoreApplication.translate("MainWindow", u"Location:", None))
+        self.btn_findPath1.setText(QCoreApplication.translate("MainWindow", u"Browse", None))
+        self.btn_findPath2.setText(QCoreApplication.translate("MainWindow", u"Browse", None))
+        self.btn_findPath4.setText(QCoreApplication.translate("MainWindow", u"Browse", None))
+        self.lbl_cmdLineParam.setText(QCoreApplication.translate("MainWindow", u"Command Line paramter:", None))
+        self.txt_cmdLineParams.setText("")
+        self.txt_cmdLineParams.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Optional", None))
+        self.lbl_screenshotSettings.setText(QCoreApplication.translate("MainWindow", u"Screenshot Settings:", None))
 #if QT_CONFIG(tooltip)
-        self.connectPOS.setToolTip(QCoreApplication.translate("MainWindow", u"Connect POS", None))
+        self.txt_screenshotTimer.setToolTip("")
 #endif // QT_CONFIG(tooltip)
-        self.connectPOS.setText(QCoreApplication.translate("MainWindow", u"Connect", None))
-#if QT_CONFIG(tooltip)
-        self.disconnectPOS.setToolTip(QCoreApplication.translate("MainWindow", u"Disconnect POS", None))
-#endif // QT_CONFIG(tooltip)
-        self.disconnectPOS.setText(QCoreApplication.translate("MainWindow", u"Disconnect", None))
-        self.groupBox_2.setTitle("")
-        self.label_18.setText(QCoreApplication.translate("MainWindow", u"Screenshot timer", None))
-#if QT_CONFIG(tooltip)
-        self.spinBox.setToolTip("")
-#endif // QT_CONFIG(tooltip)
-        self.label_16.setText(QCoreApplication.translate("MainWindow", u"sec", None))
-        self.label_17.setText(QCoreApplication.translate("MainWindow", u"Timer Settings", None))
-#if QT_CONFIG(tooltip)
-        self.saveTimer.setToolTip(QCoreApplication.translate("MainWindow", u"Save", None))
-#endif // QT_CONFIG(tooltip)
-        self.saveTimer.setText(QCoreApplication.translate("MainWindow", u"Save Settings", None))
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Testing Timer", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"ms", None))
-        self.label_13.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
+        self.txt_projectName.setText("")
+        self.txt_projectName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Required", None))
+        self.errorMessage.setText(QCoreApplication.translate("MainWindow", u"This is a Error message line", None))
+        self.cb_autoload.setText(QCoreApplication.translate("MainWindow", u"Autoload", None))
+        self.cb_autoconnect.setText(QCoreApplication.translate("MainWindow", u"Auto Connect POS", None))
+        self.lbl_reportsPath.setText(QCoreApplication.translate("MainWindow", u"Reports path:", None))
+        self.btn_findPath5.setText(QCoreApplication.translate("MainWindow", u"Browse", None))
+        self.txt_projectLocationPath.setText("")
+        self.txt_projectLocationPath.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Required", None))
+        self.lbl_cleanupscriptPath.setText(QCoreApplication.translate("MainWindow", u"Clean-up script path:", None))
+        self.txt_targetAppPath.setText("")
+        self.txt_targetAppPath.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Optional", None))
+        self.txt_setupScriptPath.setText("")
+        self.txt_setupScriptPath.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Optional", None))
+        self.lbl_tarAppPath.setText(QCoreApplication.translate("MainWindow", u"Target Application Path:", None))
+        self.txt_cleanupScriptPath.setText("")
+        self.txt_cleanupScriptPath.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Optional", None))
+        self.lbl_testCaseId.setText(QCoreApplication.translate("MainWindow", u"Workspace Name", None))
+        self.txt_reportsPath.setText("")
+        self.txt_reportsPath.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Required", None))
+        self.lbl_setupscriptPath.setText(QCoreApplication.translate("MainWindow", u"Setup script path:", None))
+        self.lbl_screenshotTimer.setText(QCoreApplication.translate("MainWindow", u"Screenshot timer:", None))
+        self.lbl_ms.setText(QCoreApplication.translate("MainWindow", u"ms", None))
+        self.btn_save_settings.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"Workspace Settings", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Start", None))
 #if QT_CONFIG(tooltip)
         self.button_recorder.setToolTip(QCoreApplication.translate("MainWindow", u"Start Recording", None))
@@ -2443,7 +2619,6 @@ class Ui_MainWindow(object):
         self.description.setText("")
         self.description.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Type here", None))
         self.recorder_cancel.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Recent Test Reports", None))
         ___qtablewidgetitem24 = self.reportsTable.horizontalHeaderItem(0)
         ___qtablewidgetitem24.setText(QCoreApplication.translate("MainWindow", u"0", None));
         ___qtablewidgetitem25 = self.reportsTable.horizontalHeaderItem(1)
@@ -2463,6 +2638,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem30.setText(QCoreApplication.translate("MainWindow", u"Edit", None));
         self.reportsTable.setSortingEnabled(__sortingEnabled1)
 
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Recent Test Reports", None))
 #if QT_CONFIG(tooltip)
         self.startTesting.setToolTip(QCoreApplication.translate("MainWindow", u"Start Testing", None))
 #endif // QT_CONFIG(tooltip)
@@ -2520,6 +2696,7 @@ class Ui_MainWindow(object):
         self.testSuiteTable.setSortingEnabled(__sortingEnabled2)
 
         self.label_message.setText(QCoreApplication.translate("MainWindow", u"Happy Testing!!", None))
+        self.lbl_connection_status.setText(QCoreApplication.translate("MainWindow", u"Application connection status: Unkown", None))
         self.version.setText(QCoreApplication.translate("MainWindow", u"v1.0.3", None))
     # retranslateUi
 

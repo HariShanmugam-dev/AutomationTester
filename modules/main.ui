@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1125</width>
+    <width>1181</width>
     <height>820</height>
    </rect>
   </property>
@@ -151,7 +151,7 @@ Left Menu */
     background-color: #0b6999; /* blue-charcoal 700 */
 }
 #bottomMenu .QPushButton:pressed {
-    background-color: rgb(189, 147, 249);
+    background-color:  rgb(191, 227, 254);
     color: rgb(255, 255, 255);
 }
 
@@ -303,6 +303,10 @@ font: 20pt &quot;Segoe UI&quot;;
 #homeWidget .QPushButton:pressed {
     background-color: transparent;
     color: rgb(255, 255, 255);
+}
+
+#homeWidget{
+border: none;
 }</string>
    </property>
    <layout class="QVBoxLayout" name="appMargins">
@@ -736,7 +740,7 @@ font: 20pt &quot;Segoe UI&quot;;
                 <item>
                  <widget class="QPushButton" name="btn_edit">
                   <property name="enabled">
-                   <bool>true</bool>
+                   <bool>false</bool>
                   </property>
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -1076,9 +1080,9 @@ QListWidget::item:hover {
                <property name="frameShadow">
                 <enum>QFrame::Shadow::Raised</enum>
                </property>
-               <layout class="QGridLayout" name="gridLayout_11">
+               <layout class="QGridLayout" name="gridLayout_6">
                 <item row="0" column="0">
-                 <widget class="QPushButton" name="extraReloadBtn">
+                 <widget class="QPushButton" name="deleteTestCase">
                   <property name="minimumSize">
                    <size>
                     <width>28</width>
@@ -1095,7 +1099,7 @@ QListWidget::item:hover {
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="toolTip">
-                   <string>Reload</string>
+                   <string>Delete selected test case</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true"> QPushButton{ background-color:rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }
@@ -1107,7 +1111,7 @@ QListWidget::item:hover {
                   </property>
                   <property name="icon">
                    <iconset resource="../icons/icon.qrc">
-                    <normaloff>:/Icons/cil-reload.png</normaloff>:/Icons/cil-reload.png</iconset>
+                    <normaloff>:/Icons/icon-delete.png</normaloff>:/Icons/icon-delete.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -1297,21 +1301,6 @@ QPushButton:hover {
                 <enum>QFrame::Shadow::Raised</enum>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_3">
-                <property name="spacing">
-                 <number>0</number>
-                </property>
-                <property name="leftMargin">
-                 <number>0</number>
-                </property>
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
                 <item>
                  <widget class="QLabel" name="titleRightInfo">
                   <property name="sizePolicy">
@@ -1336,6 +1325,36 @@ QPushButton:hover {
                   </property>
                   <property name="text">
                    <string>Automation Testing</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="projectTitle">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>45</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Segoe UI</family>
+                    <pointsize>10</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string/>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -1573,7 +1592,7 @@ QPushButton:hover {
                    <item>
                     <widget class="QStackedWidget" name="stackedWidget">
                      <property name="currentIndex">
-                      <number>3</number>
+                      <number>5</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
@@ -1582,91 +1601,11 @@ QPushButton:hover {
                       <layout class="QGridLayout" name="gridLayout_7">
                        <item row="1" column="0">
                         <widget class="QWidget" name="widget_2" native="true">
-                         <layout class="QGridLayout" name="gridLayout_6">
-                          <item row="0" column="0">
-                           <widget class="QWidget" name="widget_4" native="true">
-                            <layout class="QFormLayout" name="formLayout">
-                             <item row="1" column="0">
-                              <widget class="QLabel" name="labelHome">
-                               <property name="minimumSize">
-                                <size>
-                                 <width>0</width>
-                                 <height>0</height>
-                                </size>
-                               </property>
-                               <property name="maximumSize">
-                                <size>
-                                 <width>100</width>
-                                 <height>16777215</height>
-                                </size>
-                               </property>
-                               <property name="text">
-                                <string>Workspace:</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="1" column="1">
-                              <widget class="QLabel" name="labelWorkspacePath">
-                               <property name="sizePolicy">
-                                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                                 <horstretch>0</horstretch>
-                                 <verstretch>0</verstretch>
-                                </sizepolicy>
-                               </property>
-                               <property name="text">
-                                <string>workspacepathcd</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="0" column="0" colspan="2">
-                              <spacer name="verticalSpacer">
-                               <property name="orientation">
-                                <enum>Qt::Orientation::Vertical</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>20</width>
-                                 <height>40</height>
-                                </size>
-                               </property>
-                              </spacer>
-                             </item>
-                            </layout>
-                           </widget>
-                          </item>
-                          <item row="1" column="0">
+                         <layout class="QVBoxLayout" name="verticalLayout_9">
+                          <item>
                            <widget class="QWidget" name="homeWidget" native="true">
                             <layout class="QGridLayout" name="gridLayout_10">
-                             <item row="2" column="0">
-                              <widget class="QPushButton" name="button_openWorkspace">
-                               <property name="text">
-                                <string>Open Workspace</string>
-                               </property>
-                               <property name="icon">
-                                <iconset resource="../icons/icon.qrc">
-                                 <normaloff>:/Icons/cil-folder-open.png</normaloff>:/Icons/cil-folder-open.png</iconset>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="6" column="0">
-                              <widget class="QLabel" name="label_2">
-                               <property name="text">
-                                <string>Recents</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="3" column="0">
-                              <widget class="QPushButton" name="button_newTestCase">
-                               <property name="text">
-                                <string>New Test Case</string>
-                               </property>
-                               <property name="icon">
-                                <iconset resource="../icons/icon.qrc">
-                                 <normaloff>:/Icons/cil-plus.png</normaloff>:/Icons/cil-plus.png</iconset>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="4" column="0">
+                             <item row="5" column="0">
                               <widget class="QPushButton" name="button_loadTestCase">
                                <property name="text">
                                 <string>Load Test case</string>
@@ -1677,18 +1616,7 @@ QPushButton:hover {
                                </property>
                               </widget>
                              </item>
-                             <item row="5" column="0">
-                              <widget class="QPushButton" name="button_closeWorkspace">
-                               <property name="text">
-                                <string>Close Workspace</string>
-                               </property>
-                               <property name="icon">
-                                <iconset resource="../icons/icon.qrc">
-                                 <normaloff>:/Icons/cil-folder.png</normaloff>:/Icons/cil-folder.png</iconset>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="1" column="0">
+                             <item row="0" column="0" rowspan="2" colspan="2">
                               <widget class="QLabel" name="label_7">
                                <property name="font">
                                 <font>
@@ -1703,14 +1631,139 @@ QPushButton:hover {
                                </property>
                               </widget>
                              </item>
+                             <item row="4" column="0">
+                              <widget class="QPushButton" name="button_newTestCase">
+                               <property name="text">
+                                <string>New Test Case</string>
+                               </property>
+                               <property name="icon">
+                                <iconset resource="../icons/icon.qrc">
+                                 <normaloff>:/Icons/cil-plus.png</normaloff>:/Icons/cil-plus.png</iconset>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="3" column="0">
+                              <widget class="QPushButton" name="button_openWorkspace">
+                               <property name="text">
+                                <string>Open Workspace</string>
+                               </property>
+                               <property name="icon">
+                                <iconset resource="../icons/icon.qrc">
+                                 <normaloff>:/Icons/cil-folder-open.png</normaloff>:/Icons/cil-folder-open.png</iconset>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="6" column="0">
+                              <widget class="QPushButton" name="button_closeWorkspace">
+                               <property name="text">
+                                <string>Close Workspace</string>
+                               </property>
+                               <property name="icon">
+                                <iconset resource="../icons/icon.qrc">
+                                 <normaloff>:/Icons/cil-folder.png</normaloff>:/Icons/cil-folder.png</iconset>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="2" column="0">
+                              <widget class="QPushButton" name="button_newWorkspace">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>160</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
+                               <property name="text">
+                                <string>New Workspace</string>
+                               </property>
+                               <property name="icon">
+                                <iconset resource="../icons/icon.qrc">
+                                 <normaloff>:/Icons/cil-plus.png</normaloff>:/Icons/cil-plus.png</iconset>
+                               </property>
+                              </widget>
+                             </item>
                             </layout>
                            </widget>
                           </item>
-                          <item row="2" column="0">
-                           <widget class="QListView" name="list_recents">
-                            <property name="styleSheet">
-                             <string notr="true">background: transparent;</string>
+                          <item>
+                           <spacer name="verticalSpacer">
+                            <property name="orientation">
+                             <enum>Qt::Orientation::Vertical</enum>
                             </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>20</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                           </spacer>
+                          </item>
+                          <item>
+                           <widget class="QWidget" name="recent_widget" native="true">
+                            <property name="minimumSize">
+                             <size>
+                              <width>0</width>
+                              <height>800</height>
+                             </size>
+                            </property>
+                            <layout class="QVBoxLayout" name="verticalLayout_13">
+                             <item>
+                              <widget class="QLabel" name="label_2">
+                               <property name="text">
+                                <string>Recents</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QListWidget" name="list_recents">
+                               <property name="sizePolicy">
+                                <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                                 <horstretch>0</horstretch>
+                                 <verstretch>0</verstretch>
+                                </sizepolicy>
+                               </property>
+                               <property name="minimumSize">
+                                <size>
+                                 <width>300</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>500</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
+                               <property name="layoutDirection">
+                                <enum>Qt::LayoutDirection::LeftToRight</enum>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background: transparent;
+border: none;</string>
+                               </property>
+                               <property name="flow">
+                                <enum>QListView::Flow::TopToBottom</enum>
+                               </property>
+                               <property name="spacing">
+                                <number>9</number>
+                               </property>
+                               <property name="viewMode">
+                                <enum>QListView::ViewMode::ListMode</enum>
+                               </property>
+                               <property name="modelColumn">
+                                <number>0</number>
+                               </property>
+                               <property name="uniformItemSizes">
+                                <bool>true</bool>
+                               </property>
+                               <property name="wordWrap">
+                                <bool>true</bool>
+                               </property>
+                               <property name="selectionRectVisible">
+                                <bool>false</bool>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
                            </widget>
                           </item>
                          </layout>
@@ -2809,157 +2862,220 @@ QPushButton:disabled {
 }
 </string>
                          </property>
-                         <layout class="QVBoxLayout" name="verticalLayout_9">
-                          <item>
-                           <widget class="QGroupBox" name="groupBox_3">
+                         <layout class="QGridLayout" name="gridLayout_14">
+                          <item row="0" column="0">
+                           <widget class="QFrame" name="bgApp_2">
                             <property name="styleSheet">
-                             <string notr="true">QSpinBox {
-    background-color: #1c1c1c;
-    border: 1px solid #1D9BF0;
-    border-radius: 4px;
-    padding: 2px;
+                             <string notr="true">QLineEdit{
+background-color: rgb(33, 37, 43);
+}
+QLineEdit::disabled{
+background-color: rgb(52, 59, 72);
+color: grey;
+}
+QPushButton {
+    background-color:  rgb(33, 37, 43);
+    color: white;
+}
+
+QPushButton:hover {
+    background-color: #0b6999; /* Hover background color */
+    color: rgb(191, 227, 254);
+}
+
+QPushButton:pressed {
+    background-color:rgb(6, 7, 9) ; /* Darker blue for pressed state */
+}
+
+QPushButton:disabled {
+    background-color: rgb(52, 59, 72);
+    
+    color: grey;
+    opacity: 0.6;
 }</string>
                             </property>
-                            <property name="title">
-                             <string/>
+                            <property name="frameShape">
+                             <enum>QFrame::Shape::StyledPanel</enum>
                             </property>
-                            <layout class="QGridLayout" name="gridLayout_16">
-                             <item row="0" column="0" colspan="2">
-                              <widget class="QLabel" name="title_ConnSettings">
-                               <property name="maximumSize">
+                            <property name="frameShadow">
+                             <enum>QFrame::Shadow::Raised</enum>
+                            </property>
+                            <layout class="QGridLayout" name="gridLayout_12">
+                             <item row="4" column="3">
+                              <widget class="QPushButton" name="btn_findPath3">
+                               <property name="minimumSize">
                                 <size>
-                                 <width>16777215</width>
-                                 <height>50</height>
+                                 <width>150</width>
+                                 <height>30</height>
                                 </size>
                                </property>
                                <property name="font">
                                 <font>
-                                 <family>13 Segoe UI</family>
-                                 <pointsize>15</pointsize>
+                                 <family>Segoe UI</family>
+                                 <pointsize>-1</pointsize>
                                  <italic>false</italic>
-                                 <bold>false</bold>
+                                 <bold>true</bold>
                                 </font>
                                </property>
-                               <property name="styleSheet">
-                                <string notr="true">font: 15pt Bold &quot;Segoe UI&quot;;
-color: #0d597f;</string>
+                               <property name="cursor">
+                                <cursorShape>PointingHandCursor</cursorShape>
                                </property>
                                <property name="text">
-                                <string>Connection Settings</string>
+                                <string>Browse</string>
+                               </property>
+                               <property name="icon">
+                                <iconset resource="../icons/icon.qrc">
+                                 <normaloff>:/Icons/cil-folder-open.png</normaloff>:/Icons/cil-folder-open.png</iconset>
                                </property>
                               </widget>
                              </item>
                              <item row="1" column="0">
-                              <widget class="QLabel" name="lbl_connstatus">
+                              <widget class="QLabel" name="lbl_projectlocation">
+                               <property name="lineWidth">
+                                <number>1</number>
+                               </property>
                                <property name="text">
-                                <string>Connections Status:</string>
+                                <string>Location:</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                                </property>
                               </widget>
                              </item>
-                             <item row="1" column="1">
-                              <widget class="QLabel" name="txt_connectionstatus">
+                             <item row="1" column="3">
+                              <widget class="QPushButton" name="btn_findPath1">
+                               <property name="enabled">
+                                <bool>true</bool>
+                               </property>
+                               <property name="minimumSize">
+                                <size>
+                                 <width>150</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                               <property name="font">
+                                <font>
+                                 <family>Segoe UI</family>
+                                 <pointsize>-1</pointsize>
+                                 <italic>false</italic>
+                                 <bold>true</bold>
+                                </font>
+                               </property>
+                               <property name="cursor">
+                                <cursorShape>PointingHandCursor</cursorShape>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true"/>
+                               </property>
                                <property name="text">
-                                <string>Connected</string>
+                                <string>Browse</string>
+                               </property>
+                               <property name="icon">
+                                <iconset resource="../icons/icon.qrc">
+                                 <normaloff>:/Icons/cil-folder-open.png</normaloff>:/Icons/cil-folder-open.png</iconset>
                                </property>
                               </widget>
                              </item>
-                             <item row="2" column="0">
-                              <widget class="QLabel" name="lbl_lastConnTime">
+                             <item row="2" column="3">
+                              <widget class="QPushButton" name="btn_findPath2">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>150</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                               <property name="font">
+                                <font>
+                                 <family>Segoe UI</family>
+                                 <pointsize>-1</pointsize>
+                                 <italic>false</italic>
+                                 <bold>true</bold>
+                                </font>
+                               </property>
+                               <property name="cursor">
+                                <cursorShape>PointingHandCursor</cursorShape>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true"/>
+                               </property>
                                <property name="text">
-                                <string>Last Connected:</string>
+                                <string>Browse</string>
+                               </property>
+                               <property name="icon">
+                                <iconset resource="../icons/icon.qrc">
+                                 <normaloff>:/Icons/cil-folder-open.png</normaloff>:/Icons/cil-folder-open.png</iconset>
                                </property>
                               </widget>
                              </item>
-                             <item row="2" column="1">
-                              <widget class="QLabel" name="txt_lastConnectionTime">
+                             <item row="5" column="3">
+                              <widget class="QPushButton" name="btn_findPath4">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>150</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                               <property name="font">
+                                <font>
+                                 <family>Segoe UI</family>
+                                 <pointsize>-1</pointsize>
+                                 <italic>false</italic>
+                                 <bold>true</bold>
+                                </font>
+                               </property>
+                               <property name="cursor">
+                                <cursorShape>PointingHandCursor</cursorShape>
+                               </property>
                                <property name="text">
-                                <string>4: 03 PM</string>
+                                <string>Browse</string>
+                               </property>
+                               <property name="icon">
+                                <iconset resource="../icons/icon.qrc">
+                                 <normaloff>:/Icons/cil-folder-open.png</normaloff>:/Icons/cil-folder-open.png</iconset>
                                </property>
                               </widget>
                              </item>
                              <item row="3" column="0">
-                              <widget class="QPushButton" name="connectPOS">
+                              <widget class="QLabel" name="lbl_cmdLineParam">
+                               <property name="lineWidth">
+                                <number>1</number>
+                               </property>
+                               <property name="text">
+                                <string>Command Line paramter:</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="3" column="1" colspan="3">
+                              <widget class="QLineEdit" name="txt_cmdLineParams">
                                <property name="minimumSize">
                                 <size>
-                                 <width>100</width>
-                                 <height>0</height>
+                                 <width>0</width>
+                                 <height>30</height>
                                 </size>
                                </property>
-                               <property name="maximumSize">
-                                <size>
-                                 <width>150</width>
-                                 <height>16777215</height>
-                                </size>
-                               </property>
-                               <property name="toolTip">
-                                <string>Connect POS</string>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
                                </property>
                                <property name="text">
-                                <string>Connect</string>
+                                <string/>
+                               </property>
+                               <property name="placeholderText">
+                                <string>Optional</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="3" column="1">
-                              <widget class="QPushButton" name="disconnectPOS">
-                               <property name="minimumSize">
-                                <size>
-                                 <width>100</width>
-                                 <height>0</height>
-                                </size>
-                               </property>
-                               <property name="maximumSize">
-                                <size>
-                                 <width>150</width>
-                                 <height>16777215</height>
-                                </size>
-                               </property>
-                               <property name="toolTip">
-                                <string>Disconnect POS</string>
-                               </property>
+                             <item row="7" column="0">
+                              <widget class="QLabel" name="lbl_screenshotSettings">
                                <property name="text">
-                                <string>Disconnect</string>
+                                <string>Screenshot Settings:</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="3" column="2">
-                              <spacer name="horizontalSpacer_4">
-                               <property name="orientation">
-                                <enum>Qt::Orientation::Horizontal</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>332</width>
-                                 <height>38</height>
-                                </size>
-                               </property>
-                              </spacer>
-                             </item>
-                            </layout>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QGroupBox" name="groupBox_2">
-                            <property name="styleSheet">
-                             <string notr="true">QSpinBox {
-    background-color: #1c1c1c;
-    border: 1px solid #1D9BF0;
-    border-radius: 4px;
-    padding: 2px;
-}</string>
-                            </property>
-                            <property name="title">
-                             <string/>
-                            </property>
-                            <layout class="QGridLayout" name="gridLayout_12">
-                             <item row="1" column="0">
-                              <widget class="QLabel" name="label_18">
-                               <property name="text">
-                                <string>Screenshot timer</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="1" column="1">
-                              <widget class="QSpinBox" name="spinBox">
+                             <item row="8" column="1">
+                              <widget class="QSpinBox" name="txt_screenshotTimer">
                                <property name="toolTip">
                                 <string/>
                                </property>
@@ -2977,75 +3093,295 @@ color: #0d597f;</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="2" column="2">
-                              <widget class="QLabel" name="label_16">
+                             <item row="0" column="1" colspan="2">
+                              <widget class="QLineEdit" name="txt_projectName">
+                               <property name="enabled">
+                                <bool>true</bool>
+                               </property>
+                               <property name="minimumSize">
+                                <size>
+                                 <width>300</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
                                <property name="text">
-                                <string>sec</string>
+                                <string/>
+                               </property>
+                               <property name="placeholderText">
+                                <string>Required</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="0" column="0" colspan="3">
-                              <widget class="QLabel" name="label_17">
-                               <property name="maximumSize">
+                             <item row="10" column="0" colspan="3">
+                              <widget class="QLabel" name="errorMessage">
+                               <property name="text">
+                                <string>This is a Error message line</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="9" column="0">
+                              <widget class="QCheckBox" name="cb_autoload">
+                               <property name="autoFillBackground">
+                                <bool>false</bool>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true"/>
+                               </property>
+                               <property name="text">
+                                <string>Autoload</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="7" column="1">
+                              <widget class="QCheckBox" name="cb_autoconnect">
+                               <property name="autoFillBackground">
+                                <bool>false</bool>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true"/>
+                               </property>
+                               <property name="text">
+                                <string>Auto Connect POS</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="4" column="0">
+                              <widget class="QLabel" name="lbl_reportsPath">
+                               <property name="lineWidth">
+                                <number>1</number>
+                               </property>
+                               <property name="text">
+                                <string>Reports path:</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="6" column="3">
+                              <widget class="QPushButton" name="btn_findPath5">
+                               <property name="enabled">
+                                <bool>true</bool>
+                               </property>
+                               <property name="minimumSize">
                                 <size>
-                                 <width>16777215</width>
-                                 <height>50</height>
+                                 <width>150</width>
+                                 <height>30</height>
                                 </size>
                                </property>
                                <property name="font">
                                 <font>
-                                 <family>13 Segoe UI</family>
-                                 <pointsize>15</pointsize>
+                                 <family>Segoe UI</family>
+                                 <pointsize>-1</pointsize>
                                  <italic>false</italic>
-                                 <bold>false</bold>
+                                 <bold>true</bold>
                                 </font>
                                </property>
-                               <property name="styleSheet">
-                                <string notr="true">font: 15pt Bold &quot;Segoe UI&quot;;
-color: #0d597f;</string>
+                               <property name="cursor">
+                                <cursorShape>PointingHandCursor</cursorShape>
                                </property>
                                <property name="text">
-                                <string>Timer Settings</string>
+                                <string>Browse</string>
+                               </property>
+                               <property name="icon">
+                                <iconset resource="../icons/icon.qrc">
+                                 <normaloff>:/Icons/cil-folder-open.png</normaloff>:/Icons/cil-folder-open.png</iconset>
                                </property>
                               </widget>
                              </item>
-                             <item row="3" column="0">
-                              <widget class="QPushButton" name="saveTimer">
-                               <property name="maximumSize">
+                             <item row="1" column="1" colspan="2">
+                              <widget class="QLineEdit" name="txt_projectLocationPath">
+                               <property name="minimumSize">
                                 <size>
-                                 <width>150</width>
-                                 <height>16777215</height>
+                                 <width>400</width>
+                                 <height>30</height>
                                 </size>
                                </property>
-                               <property name="toolTip">
-                                <string>Save</string>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
                                </property>
                                <property name="text">
-                                <string>Save Settings</string>
+                                <string/>
+                               </property>
+                               <property name="placeholderText">
+                                <string>Required</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="6" column="0">
+                              <widget class="QLabel" name="lbl_cleanupscriptPath">
+                               <property name="lineWidth">
+                                <number>1</number>
+                               </property>
+                               <property name="text">
+                                <string>Clean-up script path:</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="2" column="1" colspan="2">
+                              <widget class="QLineEdit" name="txt_targetAppPath">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>0</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="placeholderText">
+                                <string>Optional</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="5" column="1" colspan="2">
+                              <widget class="QLineEdit" name="txt_setupScriptPath">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>0</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="placeholderText">
+                                <string>Optional</string>
                                </property>
                               </widget>
                              </item>
                              <item row="2" column="0">
-                              <widget class="QLabel" name="label_15">
+                              <widget class="QLabel" name="lbl_tarAppPath">
+                               <property name="lineWidth">
+                                <number>1</number>
+                               </property>
                                <property name="text">
-                                <string>Testing Timer</string>
+                                <string>Target Application Path:</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                                </property>
                               </widget>
                              </item>
-                             <item row="2" column="1">
-                              <widget class="QSpinBox" name="spinBox_2">
-                               <property name="buttonSymbols">
-                                <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
+                             <item row="6" column="1" colspan="2">
+                              <widget class="QLineEdit" name="txt_cleanupScriptPath">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>0</width>
+                                 <height>30</height>
+                                </size>
                                </property>
-                               <property name="maximum">
-                                <number>30</number>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="placeholderText">
+                                <string>Optional</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="1" column="2">
-                              <widget class="QLabel" name="label_10">
+                             <item row="0" column="0">
+                              <widget class="QLabel" name="lbl_testCaseId">
+                               <property name="lineWidth">
+                                <number>1</number>
+                               </property>
+                               <property name="text">
+                                <string>Workspace Name</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="4" column="1" colspan="2">
+                              <widget class="QLineEdit" name="txt_reportsPath">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>0</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="placeholderText">
+                                <string>Required</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="5" column="0">
+                              <widget class="QLabel" name="lbl_setupscriptPath">
+                               <property name="lineWidth">
+                                <number>1</number>
+                               </property>
+                               <property name="text">
+                                <string>Setup script path:</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="8" column="0">
+                              <widget class="QLabel" name="lbl_screenshotTimer">
+                               <property name="text">
+                                <string>Screenshot timer:</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="8" column="2">
+                              <widget class="QLabel" name="lbl_ms">
                                <property name="text">
                                 <string>ms</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="10" column="3">
+                              <widget class="QPushButton" name="btn_save_settings">
+                               <property name="styleSheet">
+                                <string notr="true">QPushButton {
+    background-color: rgb(191, 227, 254); /* Default background color */
+    color: #05151f; /* Default text color */
+    border: none;
+    border-radius: 12px; /* Rounded corners */
+    padding: 5px 10px; /* More padding for a modern look */
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #0b6999; /* Hover background color */
+    color: rgb(191, 227, 254);
+    border-radius: 12px;
+}
+
+QPushButton:pressed {
+    background-color: #094f73; /* Darker blue for pressed state */
+}
+
+QPushButton:disabled {
+    background-color: #c6d9eb; /* Lighter greyed-out background */
+    color: #7aa9d6; /* Dimmed text color */
+    border: none;
+    opacity: 0.6;
+}</string>
+                               </property>
+                               <property name="text">
+                                <string>Save</string>
                                </property>
                               </widget>
                              </item>
@@ -3055,20 +3391,7 @@ color: #0d597f;</string>
                          </layout>
                         </widget>
                        </item>
-                       <item row="2" column="2">
-                        <spacer name="horizontalSpacer">
-                         <property name="orientation">
-                          <enum>Qt::Orientation::Horizontal</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>40</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                       <item row="1" column="1" colspan="2">
+                       <item row="1" column="1">
                         <widget class="QLabel" name="label_13">
                          <property name="maximumSize">
                           <size>
@@ -3088,12 +3411,25 @@ color: #0d597f;</string>
                           <string notr="true">font: 20pt Bold &quot;Segoe UI&quot;;</string>
                          </property>
                          <property name="text">
-                          <string>Settings</string>
+                          <string>Workspace Settings</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignmentFlag::AlignCenter</set>
                          </property>
                         </widget>
+                       </item>
+                       <item row="1" column="2" rowspan="2">
+                        <spacer name="horizontalSpacer">
+                         <property name="orientation">
+                          <enum>Qt::Orientation::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
                        </item>
                       </layout>
                      </widget>
@@ -3104,12 +3440,6 @@ color: #0d597f;</string>
                       <layout class="QVBoxLayout" name="verticalLayout_11">
                        <item>
                         <widget class="QFrame" name="initialFrame">
-                         <property name="maximumSize">
-                          <size>
-                           <width>16777215</width>
-                           <height>0</height>
-                          </size>
-                         </property>
                          <property name="frameShape">
                           <enum>QFrame::Shape::StyledPanel</enum>
                          </property>
@@ -3503,8 +3833,8 @@ QPushButton:hover {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>1003</width>
-                               <height>491</height>
+                               <width>52</width>
+                               <height>28</height>
                               </rect>
                              </property>
                              <property name="sizePolicy">
@@ -3541,13 +3871,6 @@ QPushButton:hover {
                        <string notr="true">background: transparent;</string>
                       </property>
                       <layout class="QGridLayout" name="gridLayout_3">
-                       <item row="0" column="0">
-                        <widget class="QLabel" name="label_3">
-                         <property name="text">
-                          <string>Recent Test Reports</string>
-                         </property>
-                        </widget>
-                       </item>
                        <item row="1" column="0">
                         <widget class="QTableWidget" name="reportsTable">
                          <property name="sizePolicy">
@@ -3880,18 +4203,12 @@ QPushButton:hover {
                          </item>
                         </widget>
                        </item>
-                       <item row="1" column="1">
-                        <spacer name="horizontalSpacer_3">
-                         <property name="orientation">
-                          <enum>Qt::Orientation::Horizontal</enum>
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="label_3">
+                         <property name="text">
+                          <string>Recent Test Reports</string>
                          </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>416</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
+                        </widget>
                        </item>
                       </layout>
                      </widget>
@@ -3915,29 +4232,29 @@ QPushButton:hover {
                           </size>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">QPushButton {
-    background-color: rgb(191, 227, 254); /* Default background color */
-    color: #05151f; /* Default text color */
-    border: none;
+                          <string notr="true">
+QPushButton {
+    background-color:  rgb(33, 37, 43);
+    color:#bfe3fe; /* blue-charcoal 200 - light text on dark */
+border: none;
     border-radius: 12px; /* Rounded corners */
     padding: 5px 10px; /* More padding for a modern look */
     font-size: 14px;
-    font-weight: bold;
 }
 
 QPushButton:hover {
     background-color: #0b6999; /* Hover background color */
     color: rgb(191, 227, 254);
-    border-radius: 12px;
+ border-radius: 12px;
 }
 
 QPushButton:pressed {
-    background-color: #094f73; /* Darker blue for pressed state */
+    background-color:rgb(6, 7, 9) ; /* Darker blue for pressed state */
 }
 
 QPushButton:disabled {
-    background-color: #c6d9eb; /* Lighter greyed-out background */
-    color: #7aa9d6; /* Dimmed text color */
+    background-color: rgb(52, 59, 72);
+    color: grey;
     border: none;
     opacity: 0.6;
 }</string>
@@ -3975,9 +4292,9 @@ QPushButton:disabled {
                                <colorrole role="Button">
                                 <brush brushstyle="SolidPattern">
                                  <color alpha="255">
-                                  <red>191</red>
-                                  <green>227</green>
-                                  <blue>254</blue>
+                                  <red>33</red>
+                                  <green>37</green>
+                                  <blue>43</blue>
                                  </color>
                                 </brush>
                                </colorrole>
@@ -4002,18 +4319,18 @@ QPushButton:disabled {
                                <colorrole role="Base">
                                 <brush brushstyle="SolidPattern">
                                  <color alpha="255">
-                                  <red>191</red>
-                                  <green>227</green>
-                                  <blue>254</blue>
+                                  <red>33</red>
+                                  <green>37</green>
+                                  <blue>43</blue>
                                  </color>
                                 </brush>
                                </colorrole>
                                <colorrole role="Window">
                                 <brush brushstyle="SolidPattern">
                                  <color alpha="255">
-                                  <red>191</red>
-                                  <green>227</green>
-                                  <blue>254</blue>
+                                  <red>33</red>
+                                  <green>37</green>
+                                  <blue>43</blue>
                                  </color>
                                 </brush>
                                </colorrole>
@@ -4040,9 +4357,9 @@ QPushButton:disabled {
                                <colorrole role="Button">
                                 <brush brushstyle="SolidPattern">
                                  <color alpha="255">
-                                  <red>191</red>
-                                  <green>227</green>
-                                  <blue>254</blue>
+                                  <red>33</red>
+                                  <green>37</green>
+                                  <blue>43</blue>
                                  </color>
                                 </brush>
                                </colorrole>
@@ -4067,18 +4384,18 @@ QPushButton:disabled {
                                <colorrole role="Base">
                                 <brush brushstyle="SolidPattern">
                                  <color alpha="255">
-                                  <red>191</red>
-                                  <green>227</green>
-                                  <blue>254</blue>
+                                  <red>33</red>
+                                  <green>37</green>
+                                  <blue>43</blue>
                                  </color>
                                 </brush>
                                </colorrole>
                                <colorrole role="Window">
                                 <brush brushstyle="SolidPattern">
                                  <color alpha="255">
-                                  <red>191</red>
-                                  <green>227</green>
-                                  <blue>254</blue>
+                                  <red>33</red>
+                                  <green>37</green>
+                                  <blue>43</blue>
                                  </color>
                                 </brush>
                                </colorrole>
@@ -4105,9 +4422,9 @@ QPushButton:disabled {
                                <colorrole role="Button">
                                 <brush brushstyle="SolidPattern">
                                  <color alpha="255">
-                                  <red>198</red>
-                                  <green>217</green>
-                                  <blue>235</blue>
+                                  <red>52</red>
+                                  <green>59</green>
+                                  <blue>72</blue>
                                  </color>
                                 </brush>
                                </colorrole>
@@ -4132,18 +4449,18 @@ QPushButton:disabled {
                                <colorrole role="Base">
                                 <brush brushstyle="SolidPattern">
                                  <color alpha="255">
-                                  <red>198</red>
-                                  <green>217</green>
-                                  <blue>235</blue>
+                                  <red>52</red>
+                                  <green>59</green>
+                                  <blue>72</blue>
                                  </color>
                                 </brush>
                                </colorrole>
                                <colorrole role="Window">
                                 <brush brushstyle="SolidPattern">
                                  <color alpha="255">
-                                  <red>198</red>
-                                  <green>217</green>
-                                  <blue>235</blue>
+                                  <red>52</red>
+                                  <green>59</green>
+                                  <blue>72</blue>
                                  </color>
                                 </brush>
                                </colorrole>
@@ -4726,7 +5043,30 @@ QTableWidgetItem:selected {
                  </widget>
                 </item>
                 <item>
+                 <widget class="QLabel" name="lbl_connection_status">
+                  <property name="text">
+                   <string>Application connection status: Unkown</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="Line" name="line">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QLabel" name="version">
+                  <property name="maximumSize">
+                   <size>
+                    <width>80</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>v1.0.3</string>
                   </property>

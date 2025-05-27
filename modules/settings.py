@@ -1,3 +1,18 @@
+from screeninfo import get_monitors
+
+def list_monitors():
+    monitors = get_monitors()
+    for i, monitor in enumerate(monitors, start=1):
+        print(f"Monitor {i}:")
+        print(f"  Name: {getattr(monitor, 'name', 'Unknown')}")
+        print(f"  Position: ({monitor.x}, {monitor.y})")
+        print(f"  Size: {monitor.width}x{monitor.height}\n")
+
+if __name__ == "__main__":
+    list_monitors()
+
+"""
+
 import configparser
 import os
 import platform
@@ -36,10 +51,10 @@ def get_config(dirname):
 
 
 def save_config():
-    """Saves the current config to file."""
+    #Saves the current config to file.
     try:
         with open(config_location, "w") as config_file:
             CONFIG.write(config_file)
         print(f"Config saved at {config_location}")
     except Exception as e:
-        print(f"Error saving config: {e}")
+        print(f"Error saving config: {e}")"""
