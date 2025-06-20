@@ -148,7 +148,7 @@ Each test case is stored as a structured JSON file:
 
 **Hari Hara Sudhan Shanmugam**  
 📧 [contacthari.dev@gmail.com](mailto:contacthari.dev@gmail.com)  
-🌐 [harishanmugam.com](https://harishanmugam.com)
+🌐 [harishanmugam.com](https://harishanmugam.com](https://harishanmugam-dev.github.io/portfolio/))
 
 ---
 
